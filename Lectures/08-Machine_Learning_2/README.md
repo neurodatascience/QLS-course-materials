@@ -1,1 +1,1 @@
-# 8. Machine Learning 2: Dimensionality Reduction Techniques
+# 8. Machine Learning 2: Model selection and validation
