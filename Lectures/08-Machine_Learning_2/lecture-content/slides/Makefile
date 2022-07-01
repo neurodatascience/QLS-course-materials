@@ -1,6 +1,6 @@
 .PHONY: all clean clean-all
 
-all: slides.pdf
+all: ../08-Machine_Learning_2.pdf
 
 
 presentation.d: presentation.org
@@ -33,5 +33,5 @@ endif
 presentation.pdf: presentation.org $(figs)
 	emacs $< --batch -f org-beamer-export-to-pdf
 
-slides.pdf: presentation.pdf
-	pdftk F=figures/generated/cv_figure_nested.pdf P=presentation.pdf cat P1-25 F P27-end output slides.pdf
+../08-Machine_Learning_2.pdf: presentation.pdf
+	pdftk F=figures/generated/cv_figure_nested.pdf P=presentation.pdf cat P1-25 F P27-end output $@
