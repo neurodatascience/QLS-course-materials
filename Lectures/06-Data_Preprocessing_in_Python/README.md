@@ -14,8 +14,6 @@ This module is designed to introduce students to data preprocessing (ie preparat
 
 **Pre-recorded lecture video:** [YouTube Link](https://www.youtube.com/channel/UCnz2USVFlvPIi_IKQ9XOJ8g/featured)
 
-**Slides:** [Slides](https://github.com/neurodatascience/course-materials-2022/tree/main/Lectures/06-Data_Preprocessing_in_Python)
-
 **Questions you will be able to answer after taking this module:** 
 
 1. What is a problem that can arise when you one-hot encode a feature with a lot of categories?
