@@ -16,7 +16,7 @@
 
 ## Before the in-class tutorial
 1) Watch the [pre-recorded lecture](https://drive.google.com/file/d/1DwjA9u5VBguwKINQD0iWzJSXLBRhv4H_/view)
-2) Run the [setup_test](lecture-content/env-setup_test.py) to ensure you have the correct python environment setup. Here are the detailed [installation instructions](https://github.com/koudyk/intro_git_github/blob/main/installation_instructions.md) to make sure you have all these requirements.
+2) Run the [setup_test](lecture-content/env-setup_test.py) to ensure you have the correct python environment setup. Here are the detailed [installation instructions](https://neurodatascience.github.io/QLS612-Overview/setup.html) to make sure you have all these requirements.
 
 ## In-class tutorial
 1) We will go over the slides briefly - answer your questoins.
