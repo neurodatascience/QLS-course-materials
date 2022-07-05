@@ -12,7 +12,7 @@ This module is designed to introduce students to data preprocessing (ie preparat
 5. Data visualization
 6. Examining and manipulating 2D images with scikit image and scipy
 
-**Pre-recorded lecture video:** [YouTube Link](https://www.youtube.com/channel/UCnz2USVFlvPIi_IKQ9XOJ8g/featured)
+**Pre-recorded lecture video:** [YouTube Link](https://www.youtube.com/watch?v=Zt3cHaI-__w)
 
 **Questions you will be able to answer after taking this module:** 
 
