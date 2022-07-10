@@ -182,7 +182,7 @@
  Y & = & \beta_0 + \langle X, \beta \rangle + E \\
 & = & \beta_0 + \sum_{j=1}^p X_j \, \beta_j + E
  \end{IEEEeqnarray}
-"learning" = choosing \(\beta_0 \in \R\) and \(\beta \in \R^p\)
+"learning" = choosing \(\beta_0 \in \R\) and \(\bbeta \in \R^p\)
 *** How to set parameters: Empirical Risk Minimization
     - Choose a loss function \(L\) measuring how bad is our error.
     - Example: squared error \(L(Y, \hat{Y}) = (Y - \hat{Y})^2\), where \(\hat{Y}\) is the prediction
@@ -201,14 +201,62 @@ find \(\hat{\beta}_0 \in \R, \hat{\bbeta} \in \R^p\) that minimize
 \end{IEEEeqnarray}
 
 "Fitting" the parameters to \(\X, \y\).
-*** Need for fresh test data
-    When you hear "best", "maximum", "select", ... think "bias"
-- I have 4 dice and want to find one that rolls high numbers
-- I roll them all once and select the die that gives the highest number
-- The selected die rolled a 5. Is 5 a good estimate of that die's average result? What if I had 1,000 dice?
-- I need to roll it again to get an unbiased estimate
+
+*** Evaluating a model
+
+**** We always want to do 2 distinct things:
+  - Select a model.
+  - Evaluate its performance.
+
+\vfill
+
+**** warning                                                 :B_structureenv:
+     :PROPERTIES:
+     :BEAMER_env: structureenv
+     :END:
+  We can never do both on the same data!
+*** Training error is a biased estimator of the risk
+- 30 different models (eg 30 possible values for \(\hat{\beta}_0, \hat{\bbeta}\))
+- All have a risk (expected accuracy) of 0.5
+- Evaluate on a first dataset
 #+ATTR_LATEX: :height .5 \textheight
-[[file:figures/generated/regression_to_mean/dice_rolls.pdf]]
+[[file:figures/generated/select_evaluate/select_evaluate_1.pdf]]
+*** Training error is a biased estimator of the risk
+- 30 different models (eg 30 possible values for \(\hat{\beta}_0, \hat{\bbeta}\))
+- All have a risk (expected accuracy) of 0.5
+- Evaluate on a first dataset **and select the best model**
+#+ATTR_LATEX: :height .5 \textheight
+[[file:figures/generated/select_evaluate/select_evaluate_2.pdf]]
+*** Training error is a biased estimator of the risk
+On a new dataset, the selected model will perform on average:
+1. Better than on dataset A?
+2. Worse than on dataset A?
+3. The same?
+#+ATTR_LATEX: :height .5 \textheight
+[[file:figures/generated/select_evaluate/select_evaluate_2.pdf]]
+
+*** Training error is a biased estimator of the risk
+The selected model is more likely to perform worse on average than on dataset A.
+#+ATTR_LATEX: :height .5 \textheight
+[[file:figures/generated/select_evaluate/select_evaluate_3.pdf]]
+*** Training error is a biased estimator of the risk
+The selected model is more likely to perform worse on average than on the dataset used to select it:
+
+To estimate its risk we need a new dataset.
+#+ATTR_LATEX: :height .5 \textheight
+[[file:figures/generated/select_evaluate/select_evaluate_4.pdf]]
+
+*** Training error is a biased estimator of the risk
+Distribution of train and test errors across 30 experiments:
+#+ATTR_LATEX: :height .5 \textheight
+[[file:figures/generated/select_evaluate_averaged/select_evaluate_averaged_1.pdf]]
+*** Training error is a biased estimator of the risk
+- The systematic difference is the bias.
+- It is why we cannot use the training error to estimate model performance.
+#+ATTR_LATEX: :height .5 \textheight
+[[file:figures/generated/select_evaluate_averaged/select_evaluate_averaged_2.pdf]]
+
+
 *** Estimating prediction performance
 When you hear "best", "maximum", "select", ... think "bias"
 **** Setting the parameters
