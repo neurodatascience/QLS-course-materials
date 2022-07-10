@@ -316,9 +316,11 @@ where \(\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\)
   #+ATTR_LATEX: :height .7 \textheight
   [[file:figures/generated/cv_figure_simple.pdf]]
 
+\vspace{-10pt}
+
   [[https://scikit-learn.org/stable/modules/cross_validation.html][User guide on cross-validation]]
   [[https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html][=sklearn.model_selection.cross_validate=]]
-  # https://scikit-learn.org/stable/auto_examples/model_selection/plot_cv_indices.html#sphx-glr-auto-examples-model-selection-plot-cv-indices-py
+  [[https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html][=sklearn.model_selection.cross_val_score=]]
   [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_02_cross_validate_questions.py][=ex_02_cross_validate_questions.py=]]
 * Model and hyperparameter selection
 ** nested cv
@@ -421,7 +423,7 @@ When you hear "best", "maximum", "select", ... think "bias"
 #+BEGIN_SRC python
 model = GridSearchCV(
     Ridge(), {"alpha": [.1, 1., 10.]})
-scores = cross_validate(model, X, y)["test_score"]
+scores = cross_val_score(model, X, y)
 #+END_SRC
 \vfill
 - Use [[https://scikit-learn.org/stable/glossary.html#term-cross-validation-estimator][CV estimators]] when possible: [[https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeCV.html][=RidgeCV=]], [[https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LassoCV.html][=LassoCV=]], ...

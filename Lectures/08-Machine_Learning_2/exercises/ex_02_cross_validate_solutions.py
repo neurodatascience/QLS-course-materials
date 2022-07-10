@@ -11,7 +11,9 @@ model = Ridge()
 # cross-validation strategy is used? what do the scores represent -- what
 # performance metric is used?
 # What is a good choice for k?
-# Hint: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_validate.html
+# Hint:
+#  - see cross_validate: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_validate.html
+#  - or cross_val_score (very similar, a simpler interface to cross_validate): https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html
 scores = "???"
 # TODO_BEGIN
 scores = model_selection.cross_validate(

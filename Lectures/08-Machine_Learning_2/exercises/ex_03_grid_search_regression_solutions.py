@@ -14,11 +14,11 @@ model = Ridge(alpha=1e4)
 model = GridSearchCV(Ridge(), {"alpha": [.1, 1., 10.]}, verbose=1)
 # TODO_END
 scores = cross_validate(model, X, y)
-print("scores:", scores["test_score"])
+print("\nscores using GridSearchCV:", scores)
 
 # scikit-learn also has a `RidgeCV` model that does this gridsearch much more
 # efficiently.
 
 ridgecv_model = RidgeCV(alphas=[.001, .01, .1, 1., 10., 100., 1000.])
 ridgecv_scores = cross_validate(ridgecv_model, X, y)
-print("scores using RidgeCV:", ridgecv_scores["test_score"])
+print("\n\nscores using RidgeCV:", ridgecv_scores)

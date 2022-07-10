@@ -1,4 +1,4 @@
-% Created 2022-07-10 Sun 17:15
+% Created 2022-07-10 Sun 17:40
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation,mathserif,table]{beamer}
 \usepackage[utf8]{inputenc}
@@ -115,10 +115,10 @@
 
 \maketitle
 \section{Introduction: cross-validation}
-\label{sec:orgc313a11}
+\label{sec:org83d7348}
 \subsection{Recap of part 1}
-\label{sec:orgc293ca5}
-\begin{frame}[label={sec:orga096960}]{Recap of part 1}
+\label{sec:org9660c30}
+\begin{frame}[label={sec:org454f714}]{Recap of part 1}
 \begin{block}{Supervised learning}
 \begin{itemize}
 \item Regression: least-squares linear regression
@@ -129,7 +129,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:orge1e3d8f}]{Recap of part 1}
+\begin{frame}[label={sec:org8ae6627}]{Recap of part 1}
 \begin{block}<1->{Supervised learning}
 \begin{itemize}
 \item Regression: least-squares linear regression
@@ -153,7 +153,7 @@
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgeb6e934}]{Notation \& vocabulary}
+\begin{frame}[label={sec:orgf330366}]{Notation \& vocabulary}
 \begin{block}{Supervised learning framework}
 \begin{equation}
 Y = f(X) + E
@@ -175,14 +175,14 @@ Y = f(X) + E
 "learning" = choosing \(\beta_0 \in \R\) and \(\bbeta \in \R^p\)
 \end{example}
 \end{frame}
-\begin{frame}[label={sec:org57d8936}]{How to set parameters: Empirical Risk Minimization}
+\begin{frame}[label={sec:orgd248ac0}]{How to set parameters: Empirical Risk Minimization}
 \begin{itemize}
 \item Choose a loss function \(L\) measuring how bad is our error.
 \item Example: squared error \(L(Y, \hat{Y}) = (Y - \hat{Y})^2\), where \(\hat{Y}\) is the prediction
 \item We want to minimize the expected error (risk): \(\mathbb{E}[L(Y, \hat{Y})]\)
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orge967d7f}]{How to set parameters: Empirical Risk Minimization}
+\begin{frame}[label={sec:org5c1f689}]{How to set parameters: Empirical Risk Minimization}
 We do not know the risk: estimate it from a sample.
 
 Given \(n\) training examples \(\X \in \R^{n \times p}\), \(\y \in \R^n\),
@@ -199,7 +199,7 @@ find \(\hat{\beta}_0 \in \R, \hat{\bbeta} \in \R^p\) that minimize
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org5e6cf29}]{Evaluating a model}
+\begin{frame}[label={sec:org046fcdc}]{Evaluating a model}
 \begin{block}{We always want to do 2 distinct things:}
 \begin{itemize}
 \item Select a model (set the parameters).
@@ -213,7 +213,7 @@ find \(\hat{\beta}_0 \in \R, \hat{\bbeta} \in \R^p\) that minimize
 We can never do both on the same data!
 \end{structureenv}
 \end{frame}
-\begin{frame}[label={sec:org9b965b9}]{Training error is a biased estimator of the risk}
+\begin{frame}[label={sec:org4111dd5}]{Training error is a biased estimator of the risk}
 \begin{itemize}
 \item 30 different models (eg 30 possible values for \(\hat{\beta}_0, \hat{\bbeta}\))
 \item All have a risk (expected accuracy) of 0.5
@@ -223,7 +223,7 @@ We can never do both on the same data!
 \includegraphics[height=.5 \textheight]{figures/generated/select_evaluate/select_evaluate_1.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgf97efbd}]{Training error is a biased estimator of the risk}
+\begin{frame}[label={sec:org61f8293}]{Training error is a biased estimator of the risk}
 \begin{itemize}
 \item 30 different models (eg 30 possible values for \(\hat{\beta}_0, \hat{\bbeta}\))
 \item All have a risk (expected accuracy) of 0.5
@@ -233,7 +233,7 @@ We can never do both on the same data!
 \includegraphics[height=.5 \textheight]{figures/generated/select_evaluate/select_evaluate_2.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org4a05f42}]{Training error is a biased estimator of the risk}
+\begin{frame}[label={sec:orgdf455d8}]{Training error is a biased estimator of the risk}
 On a new dataset, the selected model will perform on average:
 \begin{enumerate}
 \item Better than on dataset A?
@@ -245,13 +245,13 @@ On a new dataset, the selected model will perform on average:
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org5fa7ed3}]{Training error is a biased estimator of the risk}
+\begin{frame}[label={sec:org0d6e3fe}]{Training error is a biased estimator of the risk}
 The selected model is more likely to perform worse on average than on dataset A.
 \begin{center}
 \includegraphics[height=.5 \textheight]{figures/generated/select_evaluate/select_evaluate_3.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org1a8fc48}]{Training error is a biased estimator of the risk}
+\begin{frame}[label={sec:orgfbfc577}]{Training error is a biased estimator of the risk}
 The selected model is more likely to perform worse on average than on the dataset used to select it:
 
 To estimate its risk we need a new dataset.
@@ -260,13 +260,13 @@ To estimate its risk we need a new dataset.
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orga15baf5}]{Training error is a biased estimator of the risk}
+\begin{frame}[label={sec:org4e0a088}]{Training error is a biased estimator of the risk}
 Distribution of train and test errors across 30 repetitions:
 \begin{center}
 \includegraphics[height=.5 \textheight]{figures/generated/select_evaluate_averaged/select_evaluate_averaged_1.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org0f71143}]{Training error is a biased estimator of the risk}
+\begin{frame}[label={sec:org3728f96}]{Training error is a biased estimator of the risk}
 \begin{itemize}
 \item The systematic difference is the bias.
 \item It is why we cannot use the training error to estimate model performance.
@@ -277,7 +277,7 @@ Distribution of train and test errors across 30 repetitions:
 \end{frame}
 
 
-\begin{frame}[label={sec:org58bb7c6}]{Estimating prediction performance}
+\begin{frame}[label={sec:org0ec87a9}]{Estimating prediction performance}
 When you hear "best", "maximum", "select", \ldots{} think "bias"
 \begin{block}{Setting the parameters}
 \begin{itemize}
@@ -287,8 +287,8 @@ When you hear "best", "maximum", "select", \ldots{} think "bias"
 \end{block}
 \end{frame}
 \subsection{Supervised learning with sklearn}
-\label{sec:org8a27de8}
-\begin{frame}[label={sec:org9518b92},fragile]{scikit-learn "estimator API": \texttt{fit; predict}}
+\label{sec:org576cc22}
+\begin{frame}[label={sec:orgf38a0fa},fragile]{scikit-learn "estimator API": \texttt{fit; predict}}
  \begin{minted}[]{python}
 estimator = Ridge()
 estimator.fit(X_train, y_train)
@@ -300,7 +300,7 @@ predictions = estimator.predict(X_test)
 \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear\_model.Ridge.html}{\texttt{sklearn.linear\_model.Ridge}}
 \end{frame}
 
-\begin{frame}[label={sec:org42e965b},fragile]{Evaluating performance with \texttt{sklearn.metrics}}
+\begin{frame}[label={sec:org7928dab},fragile]{Evaluating performance with \texttt{sklearn.metrics}}
  \begin{minted}[]{python}
 estimator = Ridge()
 estimator.fit(X_train, y_train)
@@ -319,7 +319,7 @@ mse = metrics.mean_squared_error(y_test, predictions)
 \href{https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine\_Learning\_2/exercises/ex\_01\_fit\_predict\_questions.py}{\texttt{ex\_01\_fit\_predict\_questions.py}}
 \end{frame}
 
-\begin{frame}[label={sec:orgd4f630a},fragile]{Some possible metrics for regression}
+\begin{frame}[label={sec:org02ab7d9},fragile]{Some possible metrics for regression}
  \begin{block}{\(R^2\) score (coefficient of determination): \href{https://scikit-learn.org/stable/modules/model\_evaluation.html\#r2-score-the-coefficient-of-determination}{\texttt{r2\_score}}}
 \begin{equation}
 R^2(\y, \hat{\y}) = 1 - \frac{\sum_{i=1}^n(y_i  - \hat{y}_i)^2}{\sum_{i=1}^n(y_i  - \bar{y})^2} \; ,
@@ -341,22 +341,24 @@ where \(\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\)
 \end{frame}
 
 \subsection{cv}
-\label{sec:orgd8609e9}
-\begin{frame}[label={sec:orgcb40ea2},fragile]{Cross-validation}
+\label{sec:orgab64737}
+\begin{frame}[label={sec:orgd387584},fragile]{Cross-validation}
  \begin{center}
 \includegraphics[height=.7 \textheight]{figures/generated/cv_figure_simple.pdf}
 \end{center}
 
+\vspace{-10pt}
+
 \href{https://scikit-learn.org/stable/modules/cross\_validation.html}{User guide on cross-validation}
 \href{https://scikit-learn.org/stable/modules/generated/sklearn.model\_selection.GridSearchCV.html}{\texttt{sklearn.model\_selection.cross\_validate}}
-
+\href{https://scikit-learn.org/stable/modules/generated/sklearn.model\_selection.cross\_val\_score.html}{\texttt{sklearn.model\_selection.cross\_val\_score}}
 \href{https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine\_Learning\_2/exercises/ex\_02\_cross\_validate\_questions.py}{\texttt{ex\_02\_cross\_validate\_questions.py}}
 \end{frame}
 \section{Model and hyperparameter selection}
-\label{sec:org2dd157f}
+\label{sec:org0f6a9ff}
 \subsection{nested cv}
-\label{sec:org2afa49e}
-\begin{frame}[label={sec:org4488dbf}]{Need for regularization}
+\label{sec:orgd077dd1}
+\begin{frame}[label={sec:org2f85e78}]{Need for regularization}
 Linear regression: projection on the column space of \(X\)
 \vspace{10pt}
 \begin{structureenv} %% top
@@ -383,14 +385,14 @@ Linear regression: projection on the column space of \(X\)
 \end{itemize}
 \end{structureenv}
 \end{frame}
-\begin{frame}[label={sec:org4a49c6c}]{Regularization}
+\begin{frame}[label={sec:orgf95ca6c}]{Regularization}
 \begin{example}[Ridge regression]
 \begin{equation}
 \argmin_{\bbeta, \beta_0} \| \y - \beta_0 - \X \, \bbeta \|_2^2 + \alpha \, \|\bbeta\|_2^2
 \end{equation}
 \end{example}
 \end{frame}
-\begin{frame}[label={sec:org27ed663}]{}
+\begin{frame}[label={sec:org93a620b}]{}
 \begin{columns}
 \begin{column}{.33\columnwidth}
 \(\small{ \text{Var}(\hat{\beta}_i) = \mathbb{E}(\hat{\beta}_i  - \mathbb{E}(\hat{\beta}_i))^2}\)
@@ -408,14 +410,14 @@ Linear regression: projection on the column space of \(X\)
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orged6026d}]{Setting hyperparameters}
+\begin{frame}[label={sec:org2498cd3}]{Setting hyperparameters}
 \begin{block}{How can we choose the ridge hyperparameter \(\alpha\)?}
 \end{block}
 Try a few and pick the best one\ldots{}
 
 But measure its performance on separate data!
 \end{frame}
-\begin{frame}[label={sec:org849fe35}]{Nested cross-validation}
+\begin{frame}[label={sec:orga48b726}]{Nested cross-validation}
 When you hear "best", "maximum", "select", \ldots{} think "bias"
 \begin{block}<2->{Setting the parameters}
 \begin{itemize}
@@ -431,19 +433,19 @@ When you hear "best", "maximum", "select", \ldots{} think "bias"
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org62132cf}]{One split}
+\begin{frame}[label={sec:org471d7bb}]{One split}
 \begin{center}
 \includegraphics[width=.9\linewidth]{figures/generated/train_eval_test/datasets.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org15724d4},fragile]{Nested cross-validation}
+\begin{frame}[label={sec:orgcee1ecd},fragile]{Nested cross-validation}
  \begin{center}
 \includegraphics[width=.9\linewidth]{figures/generated/cv_figure_nested.pdf}
 \end{center}
   see  \href{https://scikit-learn.org/stable/modules/generated/sklearn.model\_selection.GridSearchCV.html}{\texttt{sklearn.model\_selection.GridSearchCV}}
 \end{frame}
 
-\begin{frame}[label={sec:orgcf5e0b3},fragile]{Nested cross-validation with scikit-learn}
+\begin{frame}[label={sec:orgafc5823},fragile]{Nested cross-validation with scikit-learn}
  \begin{itemize}
 \item In general: \href{https://scikit-learn.org/stable/modules/generated/sklearn.model\_selection.GridSearchCV.html}{\texttt{GridSearchCV}} (\href{https://scikit-learn.org/stable/modules/grid\_search.html\#grid-search}{User Guide})
 \end{itemize}
@@ -451,7 +453,7 @@ When you hear "best", "maximum", "select", \ldots{} think "bias"
 \begin{minted}[]{python}
 model = GridSearchCV(
     Ridge(), {"alpha": [.1, 1., 10.]})
-scores = cross_validate(model, X, y)["test_score"]
+scores = cross_val_score(model, X, y)
 \end{minted}
 \vfill
 \begin{itemize}
@@ -462,14 +464,14 @@ scores = cross_validate(model, X, y)["test_score"]
 
 \href{https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine\_Learning\_2/exercises/ex\_03\_grid\_search\_regression\_questions.py}{\texttt{ex\_03\_grid\_search\_regression\_questions.py}}
 \end{frame}
-\begin{frame}[label={sec:orgbf0990a},fragile]{Implementing nested CV}
+\begin{frame}[label={sec:org9ff10eb},fragile]{Implementing nested CV}
  \href{https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine\_Learning\_2/exercises/ex\_04\_nested\_cross\_validation\_questions.py}{\texttt{ex\_04\_nested\_cross\_validation\_questions.py}}
 \end{frame}
 \section{Dimensionality reduction}
-\label{sec:org7a240aa}
+\label{sec:org77e2aee}
 \subsection{Intro}
-\label{sec:org783444a}
-\begin{frame}[label={sec:org54e98e6}]{Dimensionality reduction}
+\label{sec:orgd395339}
+\begin{frame}[label={sec:org1de7a38}]{Dimensionality reduction}
 Linear regression: projection on the column space of \(X\)
 \vspace{10pt}
 \begin{structureenv} %% top
@@ -496,7 +498,7 @@ Linear regression: projection on the column space of \(X\)
 \end{itemize}
 \end{structureenv}
 \end{frame}
-\begin{frame}[label={sec:orgb490ef4}]{Dimensionality reduction}
+\begin{frame}[label={sec:org3880a71}]{Dimensionality reduction}
 \begin{block}{Until now}
 \begin{center}
 \includegraphics[height=.12 \textheight]{figures/graphs/pipeline-1.pdf}
@@ -508,7 +510,7 @@ Linear regression: projection on the column space of \(X\)
 \end{center}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org0e530c7},fragile]{Simulated data for linear regression}
+\begin{frame}[label={sec:org9dc77c5},fragile]{Simulated data for linear regression}
  \begin{itemize}
 \item Generate \(\X \in \R^{n \times 3}\), \(\mathbold{\bbeta} \in \R^3\), \(\mathbold{e} \in \R^n\) and \(\y = \X \, \bbeta + \mathbold{e} \in R^n\)
 \item Append columns containing random noise to \(\X\)
@@ -521,7 +523,7 @@ See \href{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.mak
 \includegraphics[height=.4 \textheight]{figures/generated/show_make_regression/x_construction.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org4dba656}]{Model complexity: overfitting}
+\begin{frame}[label={sec:org2dc4712}]{Model complexity: overfitting}
 \begin{itemize}
 \item Model complexity increases with dimension.
 \item Example: a linear model in dimension \(p\) can fit exactly (0 training error) any set of \(p + 1\) points.
@@ -533,8 +535,8 @@ See \href{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.mak
 \end{center}
 \end{frame}
 \subsection{Univariate feature selection}
-\label{sec:org2753038}
-\begin{frame}[label={sec:org4cee03a}]{Univariate feature selection}
+\label{sec:orgd01e64b}
+\begin{frame}[label={sec:org74259a6}]{Univariate feature selection}
 \begin{itemize}
 \item \aka feature screening, filtering \ldots{}
 \item Check features (columns of \(\X\)) one by one for association with the output \(\y\)
@@ -552,7 +554,7 @@ See \href{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.mak
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org21e6f45}]{Original regression problem}
+\begin{frame}[label={sec:org423efeb}]{Original regression problem}
 \begin{columns}
 \begin{column}{.3\columnwidth}
 \begin{equation}
@@ -568,7 +570,7 @@ See \href{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.mak
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:org3011741}]{After univariate feature selection}
+\begin{frame}[label={sec:orgad7f04f}]{After univariate feature selection}
 \begin{columns}
 \begin{column}{.3\columnwidth}
 \begin{equation}
@@ -585,7 +587,7 @@ See \href{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.mak
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org95ecdd5}]{After univariate feature selection}
+\begin{frame}[label={sec:org036a1db}]{After univariate feature selection}
 \begin{columns}
 \begin{column}{.3\columnwidth}
 \begin{equation}
@@ -602,7 +604,7 @@ See \href{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.mak
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgd4dfa10}]{Univariate feature selection}
+\begin{frame}[label={sec:orgd2f0189}]{Univariate feature selection}
 Keeping only the 10 best features (most correlated with \(\y\))
 \begin{center}
 \includegraphics[height=.7\textheight]{figures/generated/ridge_overfitting/mse_with_dim_reduction_log.pdf}
@@ -610,8 +612,8 @@ Keeping only the 10 best features (most correlated with \(\y\))
 \end{frame}
 
 \subsection{Fit whole pipeline on train data only}
-\label{sec:org02a7f28}
-\begin{frame}[label={sec:orgff8897e}]{Dataset transformations}
+\label{sec:org7aaecf6}
+\begin{frame}[label={sec:org9febf11}]{Dataset transformations}
 \begin{block}{Typical pipeline}
 \begin{center}
 \includegraphics[width=.9\linewidth]{figures/graphs/pipeline-2-no-color.pdf}
@@ -623,7 +625,7 @@ Keeping only the 10 best features (most correlated with \(\y\))
 \end{center}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgaa15691},fragile]{scikit-learn "transformer API": \texttt{fit; transform}}
+\begin{frame}[label={sec:org271f831},fragile]{scikit-learn "transformer API": \texttt{fit; transform}}
  \begin{minted}[]{python}
 transformer = SelectKBest()
 transformer.fit(X_train)
@@ -645,7 +647,7 @@ transformed_train = transformer.fit_transform(X_train)
 \end{structureenv}
 \end{frame}
 
-\begin{frame}[label={sec:orga51836e},fragile]{\texttt{feature\_selection.SelectKBest}}
+\begin{frame}[label={sec:orgaec5042},fragile]{\texttt{feature\_selection.SelectKBest}}
  \begin{block}{\texttt{fit:}}
 \begin{itemize}
 \item compute ANOVA or correlation for each column of \(X\)
@@ -666,7 +668,7 @@ transformed_train = transformer.fit_transform(X_train)
 
 
 
-\begin{frame}[label={sec:org06f669a},fragile]{Fit the transformer only on train data!}
+\begin{frame}[label={sec:org597a965},fragile]{Fit the transformer only on train data!}
  \begin{minted}[]{python}
 transformer = SelectKBest()
 transformed_train = transformer.fit_transform(X_train)
@@ -675,7 +677,7 @@ transformed_test = transformer.transform(X_test)
 \end{minted}
 \end{frame}
 
-\begin{frame}[label={sec:org3bcc1c8},fragile]{Pipelines}
+\begin{frame}[label={sec:org2451641},fragile]{Pipelines}
  To chain transformations and an estimator, use \href{https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html}{\texttt{sklearn.pipeline.Pipeline}}
 
 \begin{itemize}
@@ -693,8 +695,8 @@ model = make_pipeline(SelectKBest(), Ridge())
 \end{structureenv}
 \end{frame}
 \subsection{Linear decomposition methods}
-\label{sec:orgcd0f3c1}
-\begin{frame}[label={sec:orgf7d2fa7}]{Linear decomposition methods}
+\label{sec:org619b362}
+\begin{frame}[label={sec:org225ebb1}]{Linear decomposition methods}
 Another approach to dimensionality reduction
 \begin{block}{Maybe OK to drop \(\X_2\):}
 \vspace{-10pt}
@@ -711,7 +713,7 @@ Another approach to dimensionality reduction
 Find a better referential in which to represent the data
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgdbcd392}]{Linear regression: projection on the column space of \(X\)}
+\begin{frame}[label={sec:org2fae070}]{Linear regression: projection on the column space of \(X\)}
 \begin{structureenv} %% top
 \begin{columns}
 \begin{column}{.3\columnwidth}
@@ -737,7 +739,7 @@ Find a better referential in which to represent the data
 \end{itemize}
 \end{structureenv}
 \end{frame}
-\begin{frame}[label={sec:org1f766df}]{Linear decomposition: low-rank approximation of \(\X\)}
+\begin{frame}[label={sec:orgad7c7c4}]{Linear decomposition: low-rank approximation of \(\X\)}
 Minimize
 \begin{equation}
 \| \X - \W \, \bH \|_{\F}^2 = \sum_{i, j} ( \X_{i,j} - (\W \, \bH)_{i,j})^2
@@ -746,7 +748,7 @@ Minimize
 \includegraphics[height=.5\textheight]{figures/generated/dim_reduction_colors/factorization_3.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org91c6f18}]{Linear regression after dimensionality reduction}
+\begin{frame}[label={sec:orgc4d0877}]{Linear regression after dimensionality reduction}
 \begin{equation}
 \hat{\y} = \W \, \hat{\bbeta}
 \end{equation}
@@ -754,7 +756,7 @@ Minimize
 \includegraphics[height=.7\textheight]{figures/generated/dim_reduction_colors/regression_reduced_3.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgd68f4e5}]{Prediction for a new data point \(\x \in \R^{p}\)}
+\begin{frame}[label={sec:org0e676e9}]{Prediction for a new data point \(\x \in \R^{p}\)}
 \begin{itemize}
 \item Find the combination of rows of \(\bH\) that is closest to \(\x\): regress \(\x\) on \(\bH^T\)
 \item Multiply by \(\hat{\bbeta}\)
@@ -763,7 +765,7 @@ Minimize
 \x \in \R^p \rightarrow \text{projection} \rightarrow \mathbold{w} \in \R^k \rightarrow \langle \cdot \, , \, \hat{\bbeta}\rangle \rightarrow \hat{y} \in \R
     \end{equation}
 \end{frame}
-\begin{frame}[label={sec:org352a5ad}]{Principal Component Analysis}
+\begin{frame}[label={sec:org32eaf4e}]{Principal Component Analysis}
 \begin{itemize}
 \item Singular Value Decomposition of \(\X\):
 \end{itemize}
@@ -783,7 +785,7 @@ Truncating the SVD to keep only the first \(k\) components gives the best rank-\
 \includegraphics[height=.3\textheight]{figures/generated/pca/cloud_not_aligned_with_pc.pdf}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org37fcd75}]{Singular Value Decomposition}
+\begin{frame}[label={sec:org792a5bd}]{Singular Value Decomposition}
 \begin{equation}
 \X = \U \, \bS \, \V^T
 \end{equation}
@@ -797,7 +799,7 @@ Truncating the SVD to keep only the first \(k\) components gives the best rank-\
 \end{equation}
 \end{frame}
 
-\begin{frame}[label={sec:org786c3de}]{Singular Value Decomposition}
+\begin{frame}[label={sec:org609afff}]{Singular Value Decomposition}
 \begin{equation}
 \X = \U \, \bS \, \V^T
 \end{equation}
@@ -812,7 +814,7 @@ Truncating the SVD to keep only the first \(k\) components gives the best rank-\
 \end{frame}
 
 
-\begin{frame}[label={sec:org269827d}]{Singular Value Decomposition}
+\begin{frame}[label={sec:orgbaa40ab}]{Singular Value Decomposition}
 \begin{equation}
 \X = \U \, \bS \, \V^T
 \end{equation}
@@ -826,7 +828,7 @@ Truncating the SVD to keep only the first \(k\) components gives the best rank-\
 \end{equation}
 \end{frame}
 
-\begin{frame}[label={sec:orgdaec2cb}]{Other decomposition methods}
+\begin{frame}[label={sec:org9f6b59c}]{Other decomposition methods}
 Many other methods use the same objective (sum of squared reconstruction errors), but add penalties or constraints on the factors
 \begin{itemize}
 \item Dictionary Learning
@@ -842,7 +844,7 @@ Many other methods use the same objective (sum of squared reconstruction errors)
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgc00e416}]{Ridge regression and PCA}
+\begin{frame}[label={sec:orgd722649}]{Ridge regression and PCA}
 \begin{itemize}
 \item Both ridge regression and PC regression compute the coordinates of \(\y\) in the basis given by the SVD of \(\X\)
 \item Ridge shrinks the coordinate along \(\U_j\) by a factor \(s_j^2 / (s_j^2 + \alpha)\)
@@ -854,11 +856,11 @@ Many other methods use the same objective (sum of squared reconstruction errors)
 \end{center}
 \end{frame}
 \section{Conclusion: summary of pitfalls}
-\label{sec:org9ae9869}
-\begin{frame}[label={sec:orgb316f86}]{(Cross-)validation experiments are simulations}
+\label{sec:org5bd23a8}
+\begin{frame}[label={sec:org34c9966}]{(Cross-)validation experiments are simulations}
 The validation experiments must simulate what will happen when deploying the trained model in production -- when starting to use it in real life.
 \end{frame}
-\begin{frame}[label={sec:orgfa29489}]{(Cross-)validation experiments are simulations}
+\begin{frame}[label={sec:orgc408b94}]{(Cross-)validation experiments are simulations}
 The validation experiments must simulate what will happen when deploying the trained model in production -- when starting to use it in real life.
 \begin{example}[Deploying a model to a hospital]
 A model is trained on research dataset and then shipped and used on a hospital's patients.
@@ -872,7 +874,7 @@ We cannot:
 If we do any of these things in our cross-validation it is not a realistic experiment.
 \end{example}
 \end{frame}
-\begin{frame}[label={sec:org5f280d8}]{Split choice example: time series}
+\begin{frame}[label={sec:org1d67af4}]{Split choice example: time series}
 Don't ignore dependencies between samples: which is easier?
 \begin{center}
 \includegraphics[height=.3 \textheight]{figures/generated/time_series_cv/kfold.pdf}
@@ -884,7 +886,7 @@ Don't ignore dependencies between samples: which is easier?
 
 Use the appropriate \href{https://scikit-learn.org/stable/modules/cross\_validation.html\#cross-validation-iterators}{cross-validation iterator}
 \end{frame}
-\begin{frame}[label={sec:org96c1d51}]{Remember that CV training sets overlap}
+\begin{frame}[label={sec:orgda7cc52}]{Remember that CV training sets overlap}
 \begin{center}
 \includegraphics[height=.6 \textheight]{figures/generated/train_eval_test/cv_not_nested.pdf}
 \end{center}
@@ -892,7 +894,7 @@ Use the appropriate \href{https://scikit-learn.org/stable/modules/cross\_validat
 So the scores are not independent! Their variance can be underestimated.
 \end{frame}
 
-\begin{frame}[label={sec:orgf23f157},fragile]{Some pitfalls with cross-validation}
+\begin{frame}[label={sec:org32d7060},fragile]{Some pitfalls with cross-validation}
  \small
 \begin{block}{Overfitting the hyperparameters}
 \begin{itemize}
