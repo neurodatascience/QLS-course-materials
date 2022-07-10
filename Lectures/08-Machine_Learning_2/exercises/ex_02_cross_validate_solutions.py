@@ -3,7 +3,7 @@ from sklearn import model_selection
 from sklearn.linear_model import Ridge
 # import pickle
 
-X, y = make_regression(noise=10)
+X, y = make_regression(noise=10, random_state=0)
 model = Ridge()
 
 # TODO: using an appropriate function from scikit-learn, compute
