@@ -173,9 +173,10 @@
  - \(X \in \R^p \): features (\aka inputs, regressors, descriptors, independent variables)
  - \(E \in \R \): unmodelled noise
  - \(f\): the function we try to approximate
-**** Example: linear regression
+**** Linear regression                                            :B_example:
      :PROPERTIES:
      :BEAMER_act: <4->
+     :BEAMER_env: example
      :END:
 \vspace{-20pt}
  \begin{IEEEeqnarray}{rCl}
@@ -205,7 +206,7 @@ find \(\hat{\beta}_0 \in \R, \hat{\bbeta} \in \R^p\) that minimize
 *** Evaluating a model
 
 **** We always want to do 2 distinct things:
-  - Select a model.
+  - Select a model (set the parameters).
   - Evaluate its performance.
 
 \vfill
@@ -224,7 +225,7 @@ find \(\hat{\beta}_0 \in \R, \hat{\bbeta} \in \R^p\) that minimize
 *** Training error is a biased estimator of the risk
 - 30 different models (eg 30 possible values for \(\hat{\beta}_0, \hat{\bbeta}\))
 - All have a risk (expected accuracy) of 0.5
-- Evaluate on a first dataset **and select the best model**
+- Evaluate on a first dataset *and select the best model*
 #+ATTR_LATEX: :height .5 \textheight
 [[file:figures/generated/select_evaluate/select_evaluate_2.pdf]]
 *** Training error is a biased estimator of the risk
@@ -247,7 +248,7 @@ To estimate its risk we need a new dataset.
 [[file:figures/generated/select_evaluate/select_evaluate_4.pdf]]
 
 *** Training error is a biased estimator of the risk
-Distribution of train and test errors across 30 experiments:
+Distribution of train and test errors across 30 repetitions:
 #+ATTR_LATEX: :height .5 \textheight
 [[file:figures/generated/select_evaluate_averaged/select_evaluate_averaged_1.pdf]]
 *** Training error is a biased estimator of the risk
@@ -290,7 +291,25 @@ When you hear "best", "maximum", "select", ... think "bias"
 
   [[https://scikit-learn.org/stable/modules/model_evaluation.html][User guide on model evaluation]]
   \vfill
-  =ex_01_fit_predict_questions.py=
+  [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_01_fit_predict_questions.py][=ex_01_fit_predict_questions.py=]]
+
+*** Some possible metrics for regression
+
+**** \(R^2\) score (coefficient of determination): [[https://scikit-learn.org/stable/modules/model_evaluation.html#r2-score-the-coefficient-of-determination][=r2_score=]]
+\begin{equation}
+R^2(\y, \hat{\y}) = 1 - \frac{\sum_{i=1}^n(y_i  - \hat{y}_i)^2}{\sum_{i=1}^n(y_i  - \bar{y})^2} \; ,
+\end{equation}
+where \(\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\)
+
+**** Mean Squared Error (MSE): [[https://scikit-learn.org/stable/modules/model_evaluation.html#mean-squared-error][=mean_squared_error=]]
+\begin{equation}
+\text{MSE}(\y, \hat{\y}) = \frac{1}{n} \sum_{i=1}^n(y_i  - \hat{y}_i)^2
+\end{equation}
+
+**** Mean Absolute Error (MAE): [[https://scikit-learn.org/stable/modules/model_evaluation.html#mean-absolute-error][=mean_absolute_error=]]
+\begin{equation}
+\text{MAE}(\y, \hat{\y}) = \frac{1}{n} \sum_{i=1}^n |y_i  - \hat{y}_i|
+\end{equation}
 
 ** cv
 *** Cross-validation
@@ -300,10 +319,9 @@ When you hear "best", "maximum", "select", ... think "bias"
   [[https://scikit-learn.org/stable/modules/cross_validation.html][=scikit-learn.org/stable/modules/cross_validation.html=]]
   [[https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html][=sklearn.model_selection.cross_validate=]]
   # https://scikit-learn.org/stable/auto_examples/model_selection/plot_cv_indices.html#sphx-glr-auto-examples-model-selection-plot-cv-indices-py
-  =ex_02_cross_validate_questions.py=
+  [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_02_cross_validate_questions.py][=ex_02_cross_validate_questions.py=]]
 * Model and hyperparameter selection
 ** nested cv
-
 *** Need for regularization
 Linear regression: projection on the column space of \(X\)
 \vspace{10pt}
@@ -334,10 +352,13 @@ Linear regression: projection on the column space of \(X\)
      :BEAMER_env: structureenv
      :END:
      - Too many features: high variance & unstable solution
-     - Solutions: regularization, dimensionality reduction
+     - Solutions: *regularization*, dimensionality reduction
 *** Regularization
 
-**** Example: ridge regression
+**** Ridge regression                                             :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
 \begin{equation}
 \argmin_{\bbeta, \beta_0} \| \y - \beta_0 - \X \, \bbeta \|_2^2 + \alpha \, \|\bbeta\|_2^2
 \end{equation}
@@ -407,19 +428,42 @@ scores = cross_validate(model, X, y)["test_score"]
 
 \vfill
 
-=ex_03_grid_search_regression_questions.py=
+[[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_03_grid_search_regression_questions.py][=ex_03_grid_search_regression_questions.py=]]
 *** Implementing nested CV
-    =ex_04_nested_cross_validation_questions.py=
+    [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_04_nested_cross_validation_questions.py][=ex_04_nested_cross_validation_questions.py=]]
 * Dimensionality reduction
 ** Intro
 *** Dimensionality reduction
-    \begin{equation}
-    \hat{\y} = \hat{\beta}_0 + \hat{\bbeta}_1 \, \X_{:, 1} + \hat{\bbeta}_2 \, \X_{:, 1} + \dots + \hat{\bbeta}_p \, \X_{:, p}
-    \end{equation}
-**** Problems when the number of features \(p\) becomes large
-     - Bigger errors on test data (larger variance of predictions)
-     - Numerical stability issues
-     - Computational cost and memory usage
+Linear regression: projection on the column space of \(X\)
+\vspace{10pt}
+**** top                                                     :B_structureenv:
+     :PROPERTIES:
+     :BEAMER_env: structureenv
+     :END:
+***** equation                                               :B_column:BMCOL:
+      :PROPERTIES:
+      :BEAMER_env: column
+      :BEAMER_col: .3
+      :END:
+      \begin{equation}
+      \hat{\y} = \X \, \hat{\bbeta}
+      \end{equation}
+
+***** equation                                               :B_column:BMCOL:
+      :PROPERTIES:
+      :BEAMER_env: column
+      :BEAMER_col: .7
+      :END:
+      \vspace{-17pt}
+      #+ATTR_LATEX: :height .7\textheight
+      [[file:figures/generated/dim_reduction_colors/regression_full_3.pdf]]
+
+**** bottom                                                  :B_structureenv:
+     :PROPERTIES:
+     :BEAMER_env: structureenv
+     :END:
+     - Too many features: high variance & unstable solution
+     - Solutions: regularization, *dimensionality reduction*
 *** Dimensionality reduction
 **** Until now
      #+ATTR_LATEX: :height .12 \textheight
@@ -449,11 +493,68 @@ See [[https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_re
     - \aka feature screening, filtering ...
     - Check features (columns of \(\X\)) one by one for association with the output \(\y\)
     - Keep only a fixed number or percentage of the features
+
 **** Simple (linear) association criteria
      - for regression: correlation
      - for classification: ANalysis Of VAriance
 **** Read more in the scikit-learn user guide
      [[https://scikit-learn.org/stable/modules/feature_selection.html#feature-selection][scikit-learn feature selection]]
+
+*** Original regression problem
+***** equation                                               :B_column:BMCOL:
+      :PROPERTIES:
+      :BEAMER_env: column
+      :BEAMER_col: .3
+      :END:
+      \begin{equation}
+      \hat{\y} = \X \, \hat{\bbeta}
+      \end{equation}
+
+***** equation                                               :B_column:BMCOL:
+      :PROPERTIES:
+      :BEAMER_env: column
+      :BEAMER_col: .7
+      :END:
+      \vspace{-17pt}
+      #+ATTR_LATEX: :height .7\textheight
+[[file:figures/generated/dim_reduction_colors/regression_full_3.pdf]]
+*** After univariate feature selection
+***** equation                                               :B_column:BMCOL:
+      :PROPERTIES:
+      :BEAMER_env: column
+      :BEAMER_col: .3
+      :END:
+      \begin{equation}
+      \hat{\y} = \X \, \hat{\bbeta}
+      \end{equation}
+
+***** equation                                               :B_column:BMCOL:
+      :PROPERTIES:
+      :BEAMER_env: column
+      :BEAMER_col: .7
+      :END:
+      \vspace{-17pt}
+      #+ATTR_LATEX: :height .7\textheight
+      [[file:figures/generated/feature_selection_colors/regression_selected_3_full_coef.pdf]]
+
+*** After univariate feature selection
+***** equation                                               :B_column:BMCOL:
+      :PROPERTIES:
+      :BEAMER_env: column
+      :BEAMER_col: .3
+      :END:
+      \begin{equation}
+      \hat{\y} = \X \, \hat{\bbeta}
+      \end{equation}
+
+***** equation                                               :B_column:BMCOL:
+      :PROPERTIES:
+      :BEAMER_env: column
+      :BEAMER_col: .7
+      :END:
+      \vspace{-17pt}
+      #+ATTR_LATEX: :height .7\textheight
+      [[file:figures/generated/feature_selection_colors/regression_selected_3.pdf]]
 
 *** Univariate feature selection
     Keeping only the 10 best features (most correlated with \(\y\))
@@ -520,15 +621,14 @@ To chain transformations and an estimator, use [[https://scikit-learn.org/stable
 - easily created with [[https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html][=sklearn.pipeline.make_pipeline=]]
 
 #+BEGIN_SRC python
-model = make_pipeline(
-    SelectKBest(), LogisticRegression())
+model = make_pipeline(SelectKBest(), Ridge())
 #+END_SRC
 **** links                                                   :B_structureenv:
      :PROPERTIES:
      :BEAMER_env: structureenv
      :END:
  \vfill
-   =ex_04_feature_selection_questions.py=
+   [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_05_feature_selection_questions.py][=ex_05_feature_selection_questions.py=]]
 ** Linear decomposition methods
 *** Linear decomposition methods
 Another approach to dimensionality reduction
@@ -675,6 +775,21 @@ Many other methods use the same objective (sum of squared reconstruction errors)
 #+ATTR_LATEX: :height .6\textheight
 [[file:figures/generated/dim_reduction_colors/regression_reduced_3_svd.pdf]]
 * Conclusion: summary of pitfalls
+*** (Cross-)validation experiments are simulations
+The validation experiments must simulate what will happen when deploying the trained model in production -- when starting to use it in real life.
+*** (Cross-)validation experiments are simulations
+The validation experiments must simulate what will happen when deploying the trained model in production -- when starting to use it in real life.
+**** Deploying a model to a hospital                             :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+A model is trained on research dataset and then shipped and used on a hospital's patients.
+We cannot:
+- Preprocess the patients' data together with the training data.
+- Use the patients' data for feature selection.
+- Try different models on the patients' data and pick the best.
+
+If we do any of these things in our cross-validation it is not a realistic experiment.
 *** Split choice example: time series
 Don't ignore dependencies between samples: which is easier?
 #+ATTR_LATEX: :height .3 \textheight
