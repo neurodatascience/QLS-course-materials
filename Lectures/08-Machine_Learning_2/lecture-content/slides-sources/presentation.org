@@ -275,6 +275,9 @@ When you hear "best", "maximum", "select", ... think "bias"
 
   [[https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html][=sklearn.linear_model.Ridge=]]
 
+\vfill
+
+("API": "Application Programming Interface" -- the specific way in which the library exposes its behaviour to user code: method names & signatures, etc.)
 *** Evaluating performance with =sklearn.metrics=
   #+BEGIN_SRC python
   estimator = Ridge()
