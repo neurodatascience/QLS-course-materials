@@ -1,0 +1,3 @@
+[submodule "Lectures/05-Git_GitHub/intro_git_github"]
+	path = Lectures/05-Git_GitHub/intro_git_github
+	url = git@github.com:koudyk/intro_git_github.git
