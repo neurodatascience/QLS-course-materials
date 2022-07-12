@@ -17,12 +17,11 @@ Here is my [pre-recorded lecture](https://youtu.be/b0ETTTKfu2Y) ([slides](https:
 ## Before the in-class tutorial
 For this tutorial, you'll need
 
-1. To have watched the [pre-recorded lecture](https://www.youtube.com/watch?v=ZE1jn8Rh0O8)
-2. A Bash shell
-3. The version control system [Git](https://git-scm.com/)
-4. A text editor you’re comfortable with 
-5. A [GitHub](https://github.com/) account.
-6. A modern browser
+1. A Bash shell
+2. The version control system [Git](https://git-scm.com/)
+3. A text editor you’re comfortable with 
+4. A [GitHub](https://github.com/) account.
+5. A modern browser
 
 Before class, please follow the [installation instructions](https://github.com/koudyk/intro_git_github/blob/main/installation_instructions.md) to make sure you have all these requirements.
 
