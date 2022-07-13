@@ -575,13 +575,14 @@ See [[https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_re
 *** scikit-learn "transformer API": =fit; transform=
     #+BEGIN_SRC python
   transformer = SelectKBest()
-  transformer.fit(X_train)
+  transformer.fit(X_train, y_train)
   transformed_train = transformer.transform(X_train)
     #+END_SRC
 **** can also be written:
      #+BEGIN_SRC python
-  transformer = SelectKBest()
-  transformed_train = transformer.fit_transform(X_train)
+       transformer = SelectKBest()
+       transformed_train = transformer.fit_transform(
+           X_train, y_train)
      #+END_SRC
 **** links                                                   :B_structureenv:
      :PROPERTIES:
@@ -612,10 +613,11 @@ See [[https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_re
 
 *** Fit the transformer only on train data!
     #+BEGIN_SRC python
-  transformer = SelectKBest()
-  transformed_train = transformer.fit_transform(X_train)
+      transformer = SelectKBest()
+      transformed_train = transformer.fit_transform(
+          X_train, y_train)
 
-  transformed_test = transformer.transform(X_test)
+      transformed_test = transformer.transform(X_test)
     #+END_SRC
 
 *** Pipelines
