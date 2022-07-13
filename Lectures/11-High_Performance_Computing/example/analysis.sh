@@ -15,7 +15,7 @@ DT=`date`
 ## print the current working directory
 WD=`pwd`
 
-cat << EOF > ./results/output_${SUBJ}.txt
+cat << EOF > ../results/output_${SUBJ}.txt
 
 Running subject: ${SUBJ}
     on host: ${HN}
