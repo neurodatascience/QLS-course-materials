@@ -1,5 +1,5 @@
-# Science on the wire
-## Why "Science on the wire?
+# Science on a wire
+## Why "Science on a wire?
 1. It is a reference to [World on a wire](https://en.wikipedia.org/wiki/World_on_a_Wire), directed by Fassbinder, that I recommend 
 2. The idea of "simulating the scientific world" is a bit less ambitious than the simulation described in World on the wire, but could still provide us with some insights
 
