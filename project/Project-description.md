@@ -21,7 +21,7 @@ We would like to study the effect of the different practices (eg those listed in
 - the chance of a "non significant" results to be published in the literature (file drawer)
 ... etc. 
 
-# Output
+## Output
 With this "Science on a wire" environment, we will be able to see the effect of pre-registration, file drawer, etc or on meta-analysis. Specifically, we can 
 - change the percentage of studies that are pre-registered (and therefore assume no p-hacking for these) and see how the consensus results change, assuming large or medium amount of p-hacking.
 - see the effect of increasing average sample size in labs - keeping other parameters constant
