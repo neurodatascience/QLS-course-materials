@@ -118,7 +118,7 @@ print('------------ Evaluate our model on (unseen) test data ----------------')
 # Error.
 # +
 
-print('\nBut what matter is the model performance on the test set!!')
+print('\nBut what matters is the model performance on the test set!!')
 test_predictions = model.predict(X_test)
 test_mse = mean_squared_error(y_test, test_predictions)
 print(f"Mean squared error on test data: {test_mse:.5g}")

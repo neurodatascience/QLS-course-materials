@@ -71,16 +71,16 @@ initial_model_intercept = np.random.uniform(0,1,1)
 
 # TODO
 # **Exercise**: write code to calculate y_hat for all training samples! 
-# y_train_hat = 
+
 
 # What is the error between model prediction (y_hat) and true values?
 # initial_mse = np.mean((y_train_hat - y_train)**2)
 
 # ------ Uncomment lines in this block to print results ------- 
 
-# print(f'\nThese are the (random) model parameters before training:')
-# print(f'b0 (intercept): {initial_model_intercept}\nb1-b10: {initial_model_coefs}')
-# print(f'\nMSE before training (i.e. using random weights): {initial_mse:.5g}')
+print(f'\nThese are the (random) model parameters before training:')
+print(f'b0 (intercept): {initial_model_intercept}\nb1-b10: {initial_model_coefs}')
+print(f'\nMSE before training (i.e. using random weights): {initial_mse:.5g}')
 
 # -------------------------------------------------------------
 
@@ -92,7 +92,9 @@ print('- 3) Use scikit-learn to fit the model -------------------------------')
 # Now let's use scikit-learn to fit the model to the training data.
 # +
 
-model = LinearRegression()
+# model = LinearRegression()
+
+
 # TODO
 # **Exercise**: fit the model with training data and get the predictions. 
 
@@ -129,12 +131,10 @@ print('- 4) Evaluate our model on (unseen) test data ------------------------')
 
 # TODO
 # **Exercise**: Check test set performance 
-# test_predictions = 
-# test_mse = mean_squared_error(y_test, test_predictions)
 
 # ------ Uncomment lines in this block to print results ------- 
 
-# print('\nBut what matter is the model performance on the test set!!')
+# print('\nBut what matters is the model performance on the test set!!')
 # print(f"Mean squared error on test data: {test_mse:.5g}")
 
 # -------------------------------------------------------------
@@ -151,15 +151,13 @@ print('- 5) Compare our performance against dummy and oracle models ---------')
 
 # ------ Uncomment lines in this block to print results ------- 
 
-# dummy_predictions = DummyRegressor().fit(X_train, y_train).predict(X_test)
-# dummy_mse = mean_squared_error(y_test, dummy_predictions)
 # print(f"\nMean squared error of dummy model on test data: {dummy_mse:.5g}")
 
-# # What would be ideal predictions? (Impossible in real life!)
-# # If we had a oracle predictor - it would predict the true values on the test set perfectly! 
-# oracle_predictions = y_test
-# oracle_mse = mean_squared_error(y_test, oracle_predictions)
-# print(f"Mean squared error of oracle model on test data: {oracle_mse:.5g}")
+# What would be ideal predictions? (Impossible in real life!)
+# If we had a oracle predictor - it would predict the true values on the test set perfectly! 
+oracle_predictions = y_test
+oracle_mse = mean_squared_error(y_test, oracle_predictions)
+print(f"Mean squared error of oracle model on test data: {oracle_mse:.5g}")
 
 # -------------------------------------------------------------
 
