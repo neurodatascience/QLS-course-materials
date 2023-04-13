@@ -20,7 +20,7 @@ scores = model_selection.cross_validate(
     model, X, y, scoring="neg_mean_squared_error", cv=model_selection.KFold(5)
 )
 # TODO_END
-print(scores)
+print(f"\nCross-validation result:\n\n{scores}")
 
 # if I am satisfied with scores
 model.fit(X, y)

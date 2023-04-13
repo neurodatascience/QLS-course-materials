@@ -15,7 +15,7 @@ model = Ridge()
 #  - see cross_validate: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_validate.html
 #  - or cross_val_score (very similar, a simpler interface to cross_validate): https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html
 scores = "???"
-print(scores)
+print(f"\nCross-validation result:\n\n{scores}")
 
 # if I am satisfied with scores
 model.fit(X, y)
