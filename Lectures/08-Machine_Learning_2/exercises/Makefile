@@ -3,7 +3,7 @@ questions := $(patsubst %_solutions.py,%_questions.py, $(solutions))
 all_scripts = $(solutions) $(questions)
 notebooks := $(patsubst %.py,notebooks/%.ipynb,$(all_scripts))
 
-.PHONY: all clean
+.PHONY: all clean test
 
 all: $(questions) $(notebooks)
 
@@ -12,6 +12,9 @@ all: $(questions) $(notebooks)
 
 notebooks/%.ipynb: %.py
 	jupytext $< --output $@
+
+test:
+	tox
 
 clean:
 	rm -f notebooks/*.ipynb

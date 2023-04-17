@@ -6,14 +6,16 @@
    #+LaTeX_CLASS: beamer
    #+LaTeX_CLASS_OPTIONS: [presentation,mathserif,table]
 
+** macros
+#+MACRO: course_url https://github.com/neurodatascience/QLS-course-materials/tree/main/Lectures/08-Machine_Learning_2/
+#+MACRO: exercise [[https://github.com/neurodatascience/QLS-course-materials/blob/main/Lectures/08-Machine_Learning_2/exercises/$1][=$1=]]
 ** presentation info
-   #+TITLE: Machine learning Part 2
+   #+TITLE: Model selection and validation
    # #+AUTHOR: Jérôme Dockès
 
    #+BEAMER_HEADER: \author{Jérôme Dockès \& Nikhil Bhagwat}
    #+BEAMER_HEADER: \titlegraphic{\includegraphics[height=1.5cm]{figures/mcgill-university.png} \hspace{1.5cm} \includegraphics[height=1.5cm]{figures/origami-lab-logo.png}}
-   #+BEAMER_HEADER: \date{QLS612 course 2022-07-12}
-   #+BEAMER_HEADER: \subtitle{Model selection \& validation}
+   #+BEAMER_HEADER: \date{QLS 612 2023-05-04}
 
 ** latex headers
 *** fonts and beamer
@@ -217,38 +219,34 @@ find \(\hat{\beta}_0 \in \R, \hat{\bbeta} \in \R^p\) that minimize
      :END:
   We can never do both on the same data!
 *** Training error is a biased estimator of the risk
-- 30 different models (eg 30 possible values for \(\hat{\beta}_0, \hat{\bbeta}\))
-- All have a risk (expected accuracy) of 0.5
-- Evaluate on a first dataset
-#+ATTR_LATEX: :height .5 \textheight
+- 30 different animals made predictions about match results in the 2022 World Cup
+#+ATTR_LATEX: :height .65 \textheight
 [[file:figures/generated/select_evaluate/select_evaluate_1.pdf]]
 *** Training error is a biased estimator of the risk
-- 30 different models (eg 30 possible values for \(\hat{\beta}_0, \hat{\bbeta}\))
-- All have a risk (expected accuracy) of 0.5
-- Evaluate on a first dataset *and select the best model*
-#+ATTR_LATEX: :height .5 \textheight
+- 30 different animals made predictions about match results in the 2022 world cup
+- We *selected the best predictor* (highest accuracy)
+#+ATTR_LATEX: :height .65 \textheight
 [[file:figures/generated/select_evaluate/select_evaluate_2.pdf]]
 *** Training error is a biased estimator of the risk
-On a new dataset, the selected model will perform on average:
-1. Better than on dataset A?
-2. Worse than on dataset A?
+The same animal is invited to make predictions about the 2026 World Cup.
+Is it more likely to perform:
+1. Better than in 2022?
+2. Worse than in 2022?
 3. The same?
-#+ATTR_LATEX: :height .5 \textheight
-[[file:figures/generated/select_evaluate/select_evaluate_2.pdf]]
+#+ATTR_LATEX: :height .65 \textheight
+[[file:figures/generated/select_evaluate/select_evaluate_2b.pdf]]
 
 *** Training error is a biased estimator of the risk
-The selected model is more likely to perform worse on average than on dataset A.
-#+ATTR_LATEX: :height .5 \textheight
+The selected animal is more likely to perform *worse* than in 2022.
+#+ATTR_LATEX: :height .65 \textheight
 [[file:figures/generated/select_evaluate/select_evaluate_3.pdf]]
 *** Training error is a biased estimator of the risk
-The selected model is more likely to perform worse on average than on the dataset used to select it:
-
-To estimate its risk we need a new dataset.
-#+ATTR_LATEX: :height .5 \textheight
-[[file:figures/generated/select_evaluate/select_evaluate_4.pdf]]
-
+The selected animal is more likely to perform *worse* than in 2022.
+#+ATTR_LATEX: :height .65 \textheight
+[[file:figures/generated/select_evaluate/select_evaluate_3b.pdf]]
+Its 2022 performance is a *biased* estimator of its expected performance in future World Cups.
 *** Training error is a biased estimator of the risk
-Distribution of train and test errors across 30 repetitions:
+Distribution of train and test errors across 50 repetitions:
 #+ATTR_LATEX: :height .5 \textheight
 [[file:figures/generated/select_evaluate_averaged/select_evaluate_averaged_1.pdf]]
 *** Training error is a biased estimator of the risk
@@ -294,7 +292,7 @@ When you hear "best", "maximum", "select", ... think "bias"
 
   [[https://scikit-learn.org/stable/modules/model_evaluation.html][User guide on model evaluation]]
   \vfill
-  [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_01_fit_predict_questions.py][=ex_01_fit_predict_questions.py=]]
+  {{{exercise(ex_01_fit_predict_questions.py)}}}
 
 *** Some possible metrics for regression
 
@@ -322,9 +320,9 @@ where \(\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\)
 \vspace{-10pt}
 
   [[https://scikit-learn.org/stable/modules/cross_validation.html][User guide on cross-validation]]
-  [[https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html][=sklearn.model_selection.cross_validate=]]
+  [[https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_validate.html][=sklearn.model_selection.cross_validate=]]
   [[https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html][=sklearn.model_selection.cross_val_score=]]
-  [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_02_cross_validate_questions.py][=ex_02_cross_validate_questions.py=]]
+  {{{exercise(ex_02_cross_validate_questions.py)}}}
 * Model and hyperparameter selection
 ** nested cv
 *** Need for regularization
@@ -433,9 +431,9 @@ scores = cross_val_score(model, X, y)
 
 \vfill
 
-[[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_03_grid_search_regression_questions.py][=ex_03_grid_search_regression_questions.py=]]
+{{{exercise(ex_03_grid_search_regression_questions.py)}}}
 *** Implementing nested CV
-    [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_04_nested_cross_validation_questions.py][=ex_04_nested_cross_validation_questions.py=]]
+{{{exercise(ex_04_nested_cross_validation_questions.py)}}}
 * Dimensionality reduction
 ** Intro
 *** Dimensionality reduction
@@ -635,7 +633,7 @@ model = make_pipeline(SelectKBest(), Ridge())
      :BEAMER_env: structureenv
      :END:
  \vfill
-   [[https://github.com/neurodatascience/course-materials-2022/blob/main/Lectures/08-Machine_Learning_2/exercises/ex_05_feature_selection_questions.py][=ex_05_feature_selection_questions.py=]]
+ {{{exercise(ex_05_feature_selection_questions.py)}}}
 ** Linear decomposition methods
 *** Linear decomposition methods
 Another approach to dimensionality reduction

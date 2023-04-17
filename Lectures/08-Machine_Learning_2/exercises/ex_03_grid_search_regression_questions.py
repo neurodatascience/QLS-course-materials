@@ -11,11 +11,11 @@ model = Ridge(alpha=1e4)
 # create a meta-model that will select the best hyperparameter using a nested
 # cross-validation loop.
 scores = cross_validate(model, X, y)
-print("\nscores using GridSearchCV:", scores)
+print(f"\nscores using GridSearchCV:\n{scores}")
 
 # scikit-learn also has a `RidgeCV` model that does this gridsearch much more
 # efficiently.
 
 ridgecv_model = RidgeCV(alphas=[.001, .01, .1, 1., 10., 100., 1000.])
 ridgecv_scores = cross_validate(ridgecv_model, X, y)
-print("\n\nscores using RidgeCV:", ridgecv_scores)
+print(f"\n\nscores using RidgeCV:\n{ridgecv_scores}")
