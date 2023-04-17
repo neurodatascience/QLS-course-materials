@@ -78,9 +78,9 @@ initial_model_intercept = np.random.uniform(0,1,1)
 
 # ------ Uncomment lines in this block to print results ------- 
 
-print(f'\nThese are the (random) model parameters before training:')
-print(f'b0 (intercept): {initial_model_intercept}\nb1-b10: {initial_model_coefs}')
-print(f'\nMSE before training (i.e. using random weights): {initial_mse:.5g}')
+# print(f'\nThese are the (random) model parameters before training:')
+# print(f'b0 (intercept): {initial_model_intercept}\nb1-b10: {initial_model_coefs}')
+# print(f'\nMSE before training (i.e. using random weights): {initial_mse:.5g}')
 
 # -------------------------------------------------------------
 
@@ -93,7 +93,9 @@ print('- 3) Use scikit-learn to fit the model -------------------------------')
 # +
 
 # model = LinearRegression()
-
+# 
+# train_predictions = 
+# train_mse = 
 
 # TODO
 # **Exercise**: fit the model with training data and get the predictions. 
@@ -110,6 +112,7 @@ print('- 3) Use scikit-learn to fit the model -------------------------------')
 # **Exercise**: Check if our MSE calculation matches with sklearn! 
 # y_train_hat = 
 # my_train_mse = 
+
 
 # ------ Uncomment lines in this block to print results ------- 
 
@@ -131,6 +134,8 @@ print('- 4) Evaluate our model on (unseen) test data ------------------------')
 
 # TODO
 # **Exercise**: Check test set performance 
+# test_predictions = 
+# test_mse = 
 
 # ------ Uncomment lines in this block to print results ------- 
 
@@ -148,6 +153,8 @@ print('- 5) Compare our performance against dummy and oracle models ---------')
 # smallest Mean Squared Error on the training data.
 #
 # **Exercise**: what constant value prediction minimizes the MSE for the training sample?
+# dummy_predictions = 
+# dummy_mse = 
 
 # ------ Uncomment lines in this block to print results ------- 
 
