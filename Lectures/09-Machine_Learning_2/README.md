@@ -1,7 +1,7 @@
-# 8. Machine Learning 2: Model selection and validation
+# 9. Machine Learning 2: Model selection and validation
 
 These are the materials for the second lecture on machine learning, which will
-take place on Tuesday, July 12 in the afternoon.
+take place on Thursday, May 4 in the afternoon.
 
 The main focus is how to properly evaluate machine learning models and perform
 hyperparameter selection, using tools from
@@ -14,7 +14,7 @@ To run the exercises we need python 3.7 or newer and the packages listed in
 instructions](https://neurodatascience.github.io/QLS612-Overview/setup.html) on
 the course website you have all this already.
 
-The slides for the lecture are in `lecture-content/08-Machine_Learning_2.pdf`,
+The slides for the lecture are in `lecture-content/09-Machine_Learning_2.pdf`,
 and during the lecture we will regularly pause to edit and execute scripts found
 in `exercises/`.
 

@@ -7,8 +7,8 @@
    #+LaTeX_CLASS_OPTIONS: [presentation,mathserif,table]
 
 ** macros
-#+MACRO: course_url https://github.com/neurodatascience/QLS-course-materials/tree/main/Lectures/08-Machine_Learning_2/
-#+MACRO: exercise [[https://github.com/neurodatascience/QLS-course-materials/blob/main/Lectures/08-Machine_Learning_2/exercises/$1][=$1=]]
+#+MACRO: course_url https://github.com/neurodatascience/QLS-course-materials/tree/main/Lectures/09-Machine_Learning_2/
+#+MACRO: exercise [[https://github.com/neurodatascience/QLS-course-materials/blob/main/Lectures/09-Machine_Learning_2/exercises/$1][=$1=]]
 ** presentation info
    #+TITLE: Model selection and validation
    # #+AUTHOR: Jérôme Dockès
