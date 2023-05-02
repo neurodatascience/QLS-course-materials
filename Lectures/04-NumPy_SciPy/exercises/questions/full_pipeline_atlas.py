@@ -45,10 +45,8 @@ print(f"transformed data shape: {transformed_data.shape}")
 print(f"unmasked image shape: {new_img.shape}")
 
 # plotting the original and transformed images
-plt.imshow(img[...,  3])
-plt.colorbar()
+fig, axes = plt.subplots(1, 2)
+axes[0].imshow(img[...,  3])
+axes[1].imshow(new_img[..., 3], interpolation="nearest")
 
-plt.figure()
-plt.imshow(new_img[..., 3])
-plt.colorbar()
 plt.show()

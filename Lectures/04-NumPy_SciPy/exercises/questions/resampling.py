@@ -49,10 +49,11 @@ def resample(source_spatial_img, target_spatial_img):
     transform[-1] = [0.0, 0.0, 1.0]
 
     # TODO:
-
-    # Apply the transformation. Use `scipy.ndimage.affine_transform`. As we
-    # will be resampling binary masks, we don't want continuous interpolation
-    # so set `order=0`.
+    # Apply the transformation. Use `scipy.ndimage.affine_transform`.
+    # https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.affine_transform.html
+    #
+    # As we will be resampling binary masks, we don't want continuous
+    # interpolation so set `order=0`.
     return target_affine, transformed_img
 
 
@@ -66,11 +67,11 @@ if __name__ == "__main__":
     template = images["mni_template"]
     template_affine = images["mni_template_affine"]
 
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, sharex=True, sharey=True)
+    fig, axes = plt.subplots(1, 3, sharex=True, sharey=True)
     resampled_template_affine, resampled_template = resample(
         (template_affine, template), (img_affine, img)
     )
-    ax1.imshow(template)
-    ax2.imshow(resampled_template)
-    ax3.imshow(img.max(axis=-1))
+    axes[0].imshow(template)
+    axes[1].imshow(resampled_template)
+    axes[2].imshow(img.max(axis=-1))
     plt.show()

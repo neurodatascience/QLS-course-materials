@@ -6,6 +6,8 @@ def smooth(img, sigma=2):
     """Create a copy of image smoothed with a Gaussian filter."""
     # TODO
     # Hint: look for scipy.ndimage.gaussian_filter
+    # https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.gaussian_filter.html
+    #
     # Hint: if img is 3D, we don't want to smooth along the last dimension...
     # `gaussian_filter` allows specifying a different `sigma` for each
     # dimension.

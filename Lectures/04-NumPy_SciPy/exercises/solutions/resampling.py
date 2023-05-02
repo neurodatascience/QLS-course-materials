@@ -52,10 +52,11 @@ def resample(source_spatial_img, target_spatial_img):
     transform[-1] = [0.0, 0.0, 1.0]
 
     # TODO:
-
-    # Apply the transformation. Use `scipy.ndimage.affine_transform`. As we
-    # will be resampling binary masks, we don't want continuous interpolation
-    # so set `order=0`.
+    # Apply the transformation. Use `scipy.ndimage.affine_transform`.
+    # https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.affine_transform.html
+    #
+    # As we will be resampling binary masks, we don't want continuous
+    # interpolation so set `order=0`.
 # TODO_BEGIN
     transformed_img = ndimage.affine_transform(
         source_img, transform, order=0, output_shape=target_img.shape[:2]

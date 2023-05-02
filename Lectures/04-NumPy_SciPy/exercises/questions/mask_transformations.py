@@ -56,11 +56,8 @@ if __name__ == "__main__":
     unmasked = mask_inverse_transform(masked_data, mni_mask)
     print(f"unmasked image shape: {unmasked.shape}")
 
-    plt.imshow(img[..., 3], cmap="seismic", vmin=-1, vmax=1)
-    plt.colorbar()
-
-    plt.figure()
-    plt.imshow(unmasked[..., 3], cmap="seismic", vmin=-1, vmax=1)
-    plt.colorbar()
+    fig, axes = plt.subplots(1, 2)
+    axes[0].imshow(img[..., 3], cmap="seismic", vmin=-1, vmax=1)
+    axes[1].imshow(unmasked[..., 3], cmap="seismic", vmin=-1, vmax=1)
 
     plt.show()

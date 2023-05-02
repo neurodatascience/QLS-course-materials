@@ -43,15 +43,13 @@ print(f"masked data shape: {masked_data.shape}")
 # unmasked = ...
 
 # plotting the original and unmasked images
-plt.imshow(img[..., 3], cmap="seismic", vmin=-img.max(), vmax=img.max())
-plt.colorbar()
-
-plt.figure()
-plt.imshow(
+fig, axes = plt.subplots(1, 2)
+axes[0].imshow(img[..., 3], cmap="seismic", vmin=-img.max(), vmax=img.max())
+axes[1].imshow(
     unmasked[..., 3],
     cmap="seismic",
     vmin=-unmasked.max(),
     vmax=unmasked.max(),
 )
-plt.colorbar()
+
 plt.show()

@@ -24,8 +24,10 @@ def atlas_transform(img, atlas_img):
     assert (np.unique(atlas_img) == np.arange(atlas_img.max() + 1)).all()
 
     # TODO
-    # Hint: look for the documentation for the `numpy.bincount` function. It
-    # can count voxels in the different regions. Moreover it accepts a
+    # Hint: look at the documentation for the `numpy.bincount` function.
+    # https://numpy.org/doc/stable/reference/generated/numpy.bincount.html
+    #
+    # It can count voxels in the different regions. Moreover it accepts a
     # `weights` parameter that allows summing arbitrary values grouped by
     # region (rather than the default weight, 1, which produces the counts).
 
@@ -65,11 +67,8 @@ if __name__ == "__main__":
     new_img = atlas_inverse_transform(data, harvard_oxford)
     print(f"unmasked image shape: {new_img.shape}")
 
-    plt.imshow(img[..., 3])
-    plt.colorbar()
-
-    plt.figure()
-    plt.imshow(new_img[..., 3])
-    plt.colorbar()
+    fig, axes = plt.subplots(1, 2)
+    axes[0].imshow(img[..., 3])
+    axes[1].imshow(new_img[..., 3], interpolation="nearest")
 
     plt.show()

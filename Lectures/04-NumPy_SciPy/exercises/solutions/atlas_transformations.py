@@ -24,8 +24,10 @@ def atlas_transform(img, atlas_img):
     assert (np.unique(atlas_img) == np.arange(atlas_img.max() + 1)).all()
 
     # TODO
-    # Hint: look for the documentation for the `numpy.bincount` function. It
-    # can count voxels in the different regions. Moreover it accepts a
+    # Hint: look at the documentation for the `numpy.bincount` function.
+    # https://numpy.org/doc/stable/reference/generated/numpy.bincount.html
+    #
+    # It can count voxels in the different regions. Moreover it accepts a
     # `weights` parameter that allows summing arbitrary values grouped by
     # region (rather than the default weight, 1, which produces the counts).
 # TODO_BEGIN
