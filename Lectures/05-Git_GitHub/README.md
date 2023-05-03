@@ -11,8 +11,7 @@ Git and GitHub are key tools for doing version control in both academia and indu
 
 
 ## Pre-recorded lecture
-Here is my [pre-recorded lecture](https://youtu.be/b0ETTTKfu2Y) ([slides](https://github.com/koudyk/intro_git_github/blob/main/pre-recorded_lecture_slides.pdf)) that goes over the topics listed above.
-
+Here is my [pre-recorded lecture](https://youtu.be/b0ETTTKfu2Y) ([slides](./Git-GitHub__lecture-slides.pdf)) that goes over the topics listed above.
 
 ## Before the in-class tutorial
 For this tutorial, you'll need
@@ -22,11 +21,6 @@ For this tutorial, you'll need
 3. A text editor you’re comfortable with 
 4. A [GitHub](https://github.com/) account.
 5. A modern browser
-
-Before class, please follow the [installation instructions](https://github.com/koudyk/intro_git_github/blob/main/installation_instructions.md) to make sure you have all these requirements.
-
-
-
 
 
 ## Acknowledgements
