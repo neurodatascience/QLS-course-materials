@@ -4,7 +4,7 @@
 SUBJ=$1
 
 ## wait 2.5 minutes
-sleep 3
+sleep 150
 
 ## point to the file
 DATA=`cat ../data/${SUBJ}/${SUBJ}-data.txt`
