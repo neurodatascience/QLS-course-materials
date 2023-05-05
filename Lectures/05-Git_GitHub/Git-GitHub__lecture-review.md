@@ -16,7 +16,7 @@
 - Each client mirrors the entire repository and its history. 
 
 - Git is one type of distributed verion control
-![](../figures/distributed-version-control.png)
+![](figures/distributed-version-control.png)
 
 -------------
 
@@ -24,14 +24,14 @@
 - History: git was created for a HUGE software project, so it’s very efficient and has many commands, but you won’t need all its features
 
 - The user experience is more intuitive. You interact with the system like git stores a stream of snapshots instead of just differences between files. 
-![](../figures/stream-of-snapshots.png)
+![](figures/stream-of-snapshots.png)
 
 - It is highly reliable. It converts the contents of a file or directory into a hash. This hash consists of 40 hexidecimal characters. It is unique and deterministic, so if you change the contents of a file, the hash will change. 
 
 - Most developers use git for version control
 
 - In research, we should aspire to "distributed, open-source knowledge development" (McElreath, 2020). For this, we need a reliable and efficient verison control system. We want to avoid the kind of situation in the comic below:
-![](../figures/piled-higher-and-deeper.png) 
+![](figures/piled-higher-and-deeper.png) 
 
 ------------
 
@@ -50,11 +50,11 @@
    
   2. Stage your changes with `git add <file>`
   
-![](../figures/git-add.gif)
+![](figures/git-add.gif)
 
   3. Take a snapshot of your staged changes with `git commit -m "short, informative commit message"` 
 
-![](../figures/git-commit.png)
+![](figures/git-commit.png)
 
 - Starting a local git repo
   - Turn an existing folder into a git repository with `git init` 
@@ -80,7 +80,7 @@
   - Start a new branch with `git branch <branch name>`
   - Change branches (i.e., reconstruct the working directory) with `git checkout <branch name>`
   - Merge a branch into your current branch with `git merge <branch name>`
-  ![](../figures/branches__labelled.png)
+  ![](figures/branches__labelled.png)
 
 
 -------------
@@ -108,7 +108,7 @@
 - Merge conflicts (Git)
   - A merge conflict occurs if two people edit the same entity, and git can't automatically merge the two changes. For example, this could happen if two people edit the same line of code. 
   - To fix a merge conflict, you need to manually integrate the two edits (e.g., by choosing which one to keep or editing the file with what should be committed)
-![](../figures/merge-conflict.png) 
+![](figures/merge-conflict.png) 
 
 ------
 
@@ -120,5 +120,5 @@
 ----
 
 ## Workflow figure
-![](../figures/workflow_figure__full.png)
+![](figures/workflow_figure__full.png)
 
