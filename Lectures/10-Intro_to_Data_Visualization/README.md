@@ -1,35 +1,24 @@
-# 9. Introduction to Data Visualization
+# Introduction to Data Visualization
 
-## Welcome!
+Welcome! Data visualization is an essential skill for scientists.
 
-### Introduction
+At the grad student level, you're probably already familiar with basic plots (e.g., bar plot vs pie chart), as well as types of data (e.g, ordered vs categorical).
 
-In this course, we'll be going over some fundamental concepts for the creation of visualizations from various types of data and data relationships, and the design of data visualizations.
+With that in mind, I hope to take you a bit deeper into the technicalities of planning and executing and effictive Figure.
 
-The course will consist of a lecture portion, but most of our time will be hands on with examples and exercises using Python to create visualizations of a few select neuroscience datasets.
 
-The expectation is not that you will be able to finish these exercises - some of them are indeed more complex than time will allow for in our brief time together - but that you become familiar with the various kinds of plots and several different graphing APIs that make them possible.
+## Lecture recordings
+1. [Part 1: Decoding](https://youtu.be/dqf5gmY7vE0)
+2. [Part 2: Encoding]()
 
-Working with data and creating visualizations can be a complex exercise with unclear answers that require implementation and design decisions acquired through practice. In sum, it's more important to stumble and learn how to learn these graphing libraries than it is to memorize them. In the world of data visualization things change daily!
+## Slides
+The slides for each lecture are in this folder.
+I also included versions with my notes to myself, in case those are helpful to you.
 
-### Installation instructions
+## Lecture code
+The code I used in the lectures are in the folder `lecture code`.
 
-Here is the list of required python packages you will need for this module (many of which you already have installed via your miniconda environment for the class):
+## Exercises
+The exercises and most of the data you'll need are in the `exercises` folder. Some of the data will be downloaded when you run the final exercise. But it shouldn't take more than a few minutes, since we will only download data for 2 participants.
 
-```
-bokeh
-matplotlib
-numpy
-pandas
-plotly
-ptitprince
-sklearn
-seaborn
-```
-
-The following command should install the additional packages necessary:
-
-```
-conda install plotly ptitprince sklearn
-```
-
+##
