@@ -28,12 +28,11 @@ fi
 
 cat << EOF > ../results/output_${SUBJ}.txt
 
-Running subject: ${SUBJ}
-    on host: ${HN}
+Running subject: ${SUBJ} on host: ${HN}
 
 Current Working Directory: ${WD}
 
-Subject ${SUBJ} Data: 
+${SUBJ} Data: 
 ${DATA}
 
 ${AP}
