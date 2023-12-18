@@ -1,3 +1,6 @@
 [submodule "Lectures/05-Git_GitHub/intro_git_github"]
 	path = Lectures/05-Git_GitHub/intro_git_github
 	url = git@github.com:koudyk/intro_git_github.git
+[submodule "Lectures/2021"]
+	path = Lectures/2021
+	url = https://github.com/neurodatascience/course-materials-2021
