@@ -1,0 +1,7 @@
+[tool.black]
+line-length = 100
+
+[tool.codespell]
+skip = ".git,*.txt"
+ignore-words-list = "nd,bu,ue,ot,te,fpt,adn,ake,oje,coyp,fle,oepn,nce,hsa,als,fo,cna"
+builtin = "clear,rare"
