@@ -1,4 +1,4 @@
-# course-materials-2022
+# course-materials
 
 Materials for the NeuroDataScience Course (McGill QLSC612).
 
