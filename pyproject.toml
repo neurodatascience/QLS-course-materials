@@ -2,6 +2,6 @@
 line-length = 100
 
 [tool.codespell]
-skip = ".git,*.txt"
-ignore-words-list = "nd,bu,ue,ot,te,fpt,adn,ake,oje,coyp,fle,oepn,nce,hsa,als,fo,cna"
+skip = ".git,pyproject.toml,*.txt,*.csv,Lectures/2022/09-Intro_to_Data_Visualization/exercises/*.ipynb"
+ignore-words-list = "nd,bu,ue,ot,te,fpt,adn,ake,oje,coyp,fle,oepn,nce,hsa,als,fo,cna,ues,lod,aline,caf,fro,wel,ony,nax,wih,coo,mis,acces,vai,nam,inout,tripel,tha,som,leapyear,mor,pash"
 builtin = "clear,rare"
