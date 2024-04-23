@@ -111,21 +111,19 @@
 # Answer: use an atlas with less regions
 
 
-from nilearn import datasets
-from nilearn.connectome import ConnectivityMeasure
-
-from sklearn.base import clone
-from sklearn.preprocessing import LabelEncoder, StandardScaler
-from sklearn.model_selection import cross_validate
-from sklearn.pipeline import make_pipeline
-from sklearn.decomposition import PCA
-from sklearn.feature_selection import SelectKBest, f_classif
-from sklearn.linear_model import LogisticRegressionCV, LogisticRegression
-from sklearn.dummy import DummyClassifier
-
-from matplotlib import pyplot as plt
 import pandas as pd
 import seaborn as sns
+from matplotlib import pyplot as plt
+from nilearn import datasets
+from nilearn.connectome import ConnectivityMeasure
+from sklearn.base import clone
+from sklearn.decomposition import PCA
+from sklearn.dummy import DummyClassifier
+from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
+from sklearn.model_selection import cross_validate
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 
 def load_timeseries_and_site(n_subjects=100):

@@ -1,8 +1,6 @@
 import numpy as np
-from matplotlib import pyplot as plt
-
 from config import FIGURES_DIR
-
+from matplotlib import pyplot as plt
 
 rng = np.random.default_rng(0)
 rolls = rng.integers(1, 7, size=(10, 30))

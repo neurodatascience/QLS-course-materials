@@ -1,7 +1,8 @@
 from pathlib import Path
+
 import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
+import seaborn as sns
 
 # load data
 data_path = Path(__file__).resolve().parents[1] / "Phenotypic_V1_0b_preprocessed1.csv"

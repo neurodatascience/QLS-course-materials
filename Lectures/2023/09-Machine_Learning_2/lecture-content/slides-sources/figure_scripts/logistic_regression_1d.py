@@ -1,9 +1,8 @@
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.datasets import make_classification
-from matplotlib import pyplot as plt
-
 from config import FIGURES_DIR, TAB10_COLORS
+from matplotlib import pyplot as plt
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
 
 x, y = make_classification(
     20,

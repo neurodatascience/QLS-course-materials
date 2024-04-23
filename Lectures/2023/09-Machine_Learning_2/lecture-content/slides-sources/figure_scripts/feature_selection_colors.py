@@ -1,11 +1,9 @@
+import matplotlib.patches as mpatches
 import numpy as np
+from config import FIGURES_DIR
+from matplotlib import colors as mcolors, pyplot as plt
 from scipy import linalg
 from sklearn import feature_selection
-from matplotlib import pyplot as plt
-from matplotlib import colors as mcolors
-import matplotlib.patches as mpatches
-
-from config import FIGURES_DIR
 
 
 def paint(axes, colors):

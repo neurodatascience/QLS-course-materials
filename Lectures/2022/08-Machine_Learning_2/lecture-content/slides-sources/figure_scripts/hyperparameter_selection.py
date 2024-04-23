@@ -1,11 +1,10 @@
 import numpy as np
-from sklearn.datasets import make_regression
-from sklearn.linear_model import RidgeCV, Ridge
-from sklearn.base import clone
-from scipy.linalg import svd
-from sklearn.metrics import mean_squared_error
-
 from matplotlib import pyplot as plt
+from scipy.linalg import svd
+from sklearn.base import clone
+from sklearn.datasets import make_regression
+from sklearn.linear_model import Ridge, RidgeCV
+from sklearn.metrics import mean_squared_error
 
 
 def dof(X, alpha_range):

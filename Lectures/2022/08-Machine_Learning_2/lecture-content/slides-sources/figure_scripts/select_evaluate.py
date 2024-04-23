@@ -1,11 +1,9 @@
-import numpy as np
 import matplotlib as mpl
-from matplotlib import transforms
-from matplotlib import pyplot as plt
-import seaborn as sns
+import numpy as np
 import pandas as pd
-
+import seaborn as sns
 from config import FIGURES_DIR
+from matplotlib import pyplot as plt, transforms
 
 mpl.rc("text", usetex=False)
 rng = np.random.default_rng(0)

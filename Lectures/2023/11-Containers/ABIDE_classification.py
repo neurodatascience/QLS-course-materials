@@ -1,15 +1,15 @@
 ## Imports
+import argparse
+
+import numpy as np
+import pandas as pd
 from nilearn import datasets
 from nilearn.connectome import ConnectivityMeasure
-import pandas as pd
-import numpy as np
-import argparse
 from sklearn import preprocessing
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import precision_recall_fscore_support
-from sklearn.metrics import confusion_matrix
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
+from sklearn.model_selection import train_test_split
 
 
 def extract_connectome_features(func_data, measure):

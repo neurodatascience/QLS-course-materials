@@ -62,7 +62,7 @@
 
 # +
 import numpy as np
-from sklearn import datasets, linear_model, model_selection, metrics
+from sklearn import datasets, linear_model, metrics, model_selection
 from sklearn.base import clone
 
 # -

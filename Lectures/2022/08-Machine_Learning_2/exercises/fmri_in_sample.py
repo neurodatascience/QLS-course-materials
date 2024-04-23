@@ -1,15 +1,13 @@
-from nilearn import datasets
-from nilearn.connectome import ConnectivityMeasure
-
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import cross_validate
-from sklearn.pipeline import make_pipeline
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-
-from matplotlib import pyplot as plt
 import pandas as pd
 import seaborn as sns
+from matplotlib import pyplot as plt
+from nilearn import datasets
+from nilearn.connectome import ConnectivityMeasure
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import cross_validate
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import LabelEncoder
 
 
 def load_abide_data(n_subjects=100):

@@ -1,6 +1,6 @@
 from sklearn.datasets import make_regression
 from sklearn.linear_model import Ridge, RidgeCV
-from sklearn.model_selection import cross_validate, GridSearchCV
+from sklearn.model_selection import GridSearchCV, cross_validate
 
 X, y = make_regression(noise=2.5, n_samples=500, n_features=600, random_state=0)
 

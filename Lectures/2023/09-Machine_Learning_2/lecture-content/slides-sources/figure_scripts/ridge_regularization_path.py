@@ -1,12 +1,10 @@
+import matplotlib as mpl
 import numpy as np
-from sklearn.linear_model import Ridge
 import pandas as pd
 import seaborn as sns
-from matplotlib import pyplot as plt
-from matplotlib import colors
-import matplotlib as mpl
-
 from config import FIGURES_DIR
+from matplotlib import colors, pyplot as plt
+from sklearn.linear_model import Ridge
 
 try:
     rng = np.random.default_rng(0)

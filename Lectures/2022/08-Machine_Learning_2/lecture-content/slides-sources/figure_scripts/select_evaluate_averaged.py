@@ -1,11 +1,9 @@
+import matplotlib as mpl
 import numpy as np
 import pandas as pd
-import matplotlib as mpl
-from matplotlib import transforms
-from matplotlib import pyplot as plt
 import seaborn as sns
-
 from config import FIGURES_DIR, TAB20_COLORS
+from matplotlib import pyplot as plt, transforms
 
 mpl.rc("text", usetex=False)
 

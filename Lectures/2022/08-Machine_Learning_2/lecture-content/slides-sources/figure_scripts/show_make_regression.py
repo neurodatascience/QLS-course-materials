@@ -1,6 +1,5 @@
-from matplotlib import pyplot as plt
-
 from config import FIGURES_DIR, TAB10_COLORS
+from matplotlib import pyplot as plt
 
 COLORS = [list(c[:3]) + [0.7] for c in TAB10_COLORS]
 

@@ -1,9 +1,8 @@
 import argparse
 
 import numpy as np
+from matplotlib import colors, gridspec, pyplot as plt
 from sklearn.model_selection import KFold
-from matplotlib import pyplot as plt
-from matplotlib import gridspec, colors
 
 EMPTY_COLOR = "#ffffff"
 TRAIN_CMAP = colors.ListedColormap([EMPTY_COLOR, colors.TABLEAU_COLORS["tab:blue"]])

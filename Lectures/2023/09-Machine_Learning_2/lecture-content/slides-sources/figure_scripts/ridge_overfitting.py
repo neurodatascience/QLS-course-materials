@@ -1,18 +1,17 @@
 import time
 
 import numpy as np
+from config import FIGURES_DIR, TAB10_COLORS
+from matplotlib import pyplot as plt
 from sklearn import (
-    datasets,
-    linear_model,
-    model_selection,
     base,
-    metrics,
+    datasets,
     feature_selection,
+    linear_model,
+    metrics,
+    model_selection,
     pipeline,
 )
-from matplotlib import pyplot as plt
-
-from config import FIGURES_DIR, TAB10_COLORS
 
 
 def score(n_features, model, X_train, X_test, y_train, y_test):

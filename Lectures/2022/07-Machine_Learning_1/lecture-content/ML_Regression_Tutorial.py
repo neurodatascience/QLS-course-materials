@@ -12,13 +12,11 @@
 
 # +
 import numpy as np
-
-from sklearn import datasets
-from sklearn.linear_model import LinearRegression
-from sklearn.dummy import DummyRegressor
-from sklearn.metrics import mean_squared_error
-
 from matplotlib import pyplot as plt
+from sklearn import datasets
+from sklearn.dummy import DummyRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 
 # -
 

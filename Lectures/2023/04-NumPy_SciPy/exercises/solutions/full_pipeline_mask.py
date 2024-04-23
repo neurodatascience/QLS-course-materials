@@ -10,13 +10,12 @@ The steps are:
 - resample the mask to the images' resolution
 - mask the images
 """
-import numpy as np
-from matplotlib import pyplot as plt
-
 # Note we import the modules we created in the previous exercises
 import mask_transformations
+import numpy as np
 import resampling
 import smoothing
+from matplotlib import pyplot as plt
 
 images = np.load("images.npz")
 

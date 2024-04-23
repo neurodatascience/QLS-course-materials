@@ -1,8 +1,7 @@
 import numpy as np
+from config import FIGURES_DIR, TAB10_COLORS
 from matplotlib import pyplot as plt
 from scipy.linalg import svd
-
-from config import FIGURES_DIR, TAB10_COLORS
 
 FIGSIZE = 2, 2
 

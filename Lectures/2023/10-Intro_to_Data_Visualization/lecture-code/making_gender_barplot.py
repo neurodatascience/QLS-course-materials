@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots(1, 1, figsize=(3, 3))

@@ -4,11 +4,11 @@
 # In[1]:
 
 
-import pandas as pd  # Importing the pandas module
-import numpy as np  # Importing numpy
 import matplotlib.pyplot as plt
-from nilearn.datasets import fetch_abide_pcp
+import numpy as np  # Importing numpy
+import pandas as pd  # Importing the pandas module
 import statsmodels as stm
+from nilearn.datasets import fetch_abide_pcp
 
 get_ipython().run_line_magic("matplotlib", "inline")
 
@@ -50,7 +50,6 @@ print(lin.norm(A - u @ np.diag(la) @ vt))  # check the computation
 
 
 from scipy import optimize
-
 
 # In[4]:
 
@@ -327,9 +326,7 @@ for sex, value in groupby_sex["PIQ"]:
 # In[30]:
 
 
-from scipy import stats
-from scipy import stats as sst
-
+from scipy import stats, stats as sst
 
 # ## A quick detour by an effect size question
 
@@ -512,7 +509,6 @@ kdata.columns
 
 
 from statsmodels.formula.api import ols
-
 
 model = ols("VIQ ~ SEX + DX_GROUP + AGE_AT_SCAN + func_mean_fd", kdata).fit()
 print(model.summary())

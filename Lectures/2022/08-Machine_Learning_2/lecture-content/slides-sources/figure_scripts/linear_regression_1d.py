@@ -1,9 +1,8 @@
-from matplotlib import pyplot as plt
 import numpy as np
 import scipy
 import scipy.stats
-
 from config import FIGURES_DIR
+from matplotlib import pyplot as plt
 
 rng = np.random.default_rng(0)
 n = 20

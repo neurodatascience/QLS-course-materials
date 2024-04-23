@@ -1,20 +1,22 @@
 # Test for checking python env setup
 
 # Imports
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import seaborn as sns
-
-from sklearn import datasets, linear_model, model_selection, metrics
-from sklearn.dummy import DummyRegressor
-from sklearn import preprocessing
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.base import clone
-
-from nilearn import datasets
+from nilearn import datasets, plotting
 from nilearn.connectome import ConnectivityMeasure
-from nilearn import plotting
+from sklearn import (
+    datasets,
+    linear_model,
+    metrics,
+    model_selection,
+    preprocessing,
+)
+from sklearn.base import clone
+from sklearn.dummy import DummyRegressor
+from sklearn.ensemble import RandomForestClassifier
 
 print("")
 print("**********************************************************")

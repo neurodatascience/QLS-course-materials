@@ -1,7 +1,6 @@
 import numpy as np
-from matplotlib import pyplot as plt
-
 from config import FIGURES_DIR
+from matplotlib import pyplot as plt
 
 
 def show_cv(shuffle):

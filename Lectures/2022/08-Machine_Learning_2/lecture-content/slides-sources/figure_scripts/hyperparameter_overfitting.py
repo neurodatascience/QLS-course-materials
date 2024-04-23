@@ -1,11 +1,9 @@
 import numpy as np
-from scipy import stats
-
-from matplotlib import pyplot as plt
-import seaborn as sns
 import pandas as pd
-
+import seaborn as sns
 from config import FIGURES_DIR
+from matplotlib import pyplot as plt
+from scipy import stats
 
 rng = np.random.default_rng(0)
 

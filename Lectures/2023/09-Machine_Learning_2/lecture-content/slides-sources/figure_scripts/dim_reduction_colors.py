@@ -1,11 +1,9 @@
-import numpy as np
-from scipy.linalg import svd, lstsq
-from matplotlib import pyplot as plt
-from matplotlib import colors as mcolors
 import matplotlib.patches as mpatches
-from sklearn.decomposition import NMF
-
+import numpy as np
 from config import FIGURES_DIR
+from matplotlib import colors as mcolors, pyplot as plt
+from scipy.linalg import lstsq, svd
+from sklearn.decomposition import NMF
 
 
 def paint(axes, colors):

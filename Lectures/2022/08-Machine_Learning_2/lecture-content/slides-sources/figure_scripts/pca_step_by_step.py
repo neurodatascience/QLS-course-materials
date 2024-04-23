@@ -1,10 +1,9 @@
 import numpy as np
-from matplotlib import pyplot as plt
-from skimage import data, filters
-from scipy.linalg import svd
-from sklearn.metrics import explained_variance_score
-
 from config import FIGURES_DIR
+from matplotlib import pyplot as plt
+from scipy.linalg import svd
+from skimage import data, filters
+from sklearn.metrics import explained_variance_score
 
 # img = mpl.image.imread("/tmp/astronaut.jpg")
 
