@@ -1,27 +1,33 @@
+"""Generate dataset by extracting connectivity between brain regions.
+
+Works on the ABIDE dataset.
+
+TODO:
+
+-   Add listing of regions used
+"""
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from nilearn import datasets
 from nilearn.connectome import ConnectivityMeasure
-from rich import print
 
-output_dir = Path(__file__).parent
+output_dir: Path = Path(__file__).parent
 
-n_subjects = 10
+n_subjects: int = 100
 
 # data specific to regions defined by
-
+# the Harvard-Oxford atlas.
+parcellation: str = "rois_ho"
 # the Automatic Anatomical Labeling atlas.
 parcellation = "rois_aal"
-# the Harvard-Oxford atlas.
-parcellation = "rois_ho"
 
 # connectivity measure
-kind = "correlation"
+kind: str = "correlation"
 
 
-def main():
+def main() -> None:
     data = datasets.fetch_abide_pcp(n_subjects=n_subjects, derivatives=[parcellation])
 
     pheno = pd.DataFrame(data["phenotypic"]).drop(columns=["i", "Unnamed: 0"])
@@ -56,6 +62,7 @@ def extract_connectome_features(func_data, measure=None):
         measure = ConnectivityMeasure(kind="correlation")
 
     connectome_matrix = measure.fit_transform([func_data])[0]
+    print(connectome_matrix.shape)
 
     # Extract lower (or upper) triangle entrees (excluding diagonal)
     tril_idx = np.tril_indices(len(connectome_matrix), k=-1)
