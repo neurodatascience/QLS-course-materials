@@ -1,4 +1,4 @@
-# 7. Introduction to Machine Learning 1: Supervised Learning
+# Introduction to Machine Learning 1: Supervised Learning
 
 ## Topics covered
 

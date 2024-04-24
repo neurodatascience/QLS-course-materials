@@ -1,4 +1,4 @@
-# 9. Machine Learning 2: Model selection and validation
+# Machine Learning 2: Model selection and validation
 
 These are the materials for the second lecture on machine learning,
 which will take place on Thursday, May 4 in the afternoon.
@@ -11,8 +11,7 @@ We will also discuss regularization and dimensionality reduction,
 so that we have examples of hyperparameters to tune and more complex learning pipelines.
 
 To run the exercises we need python 3.7 or newer and the packages listed in
-`exercises/requirements.txt` -- if you followed the [setup
-instructions](https://neurodatascience.github.io/QLS612-Overview/setup.html) on
+`exercises/requirements.txt` -- if you followed the [setup instructions](https://neurodatascience.github.io/QLS612-Overview/setup.html) on
 the course website you have all this already.
 
 The slides for the lecture are in `???`,

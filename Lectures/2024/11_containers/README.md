@@ -1,4 +1,4 @@
-# 10. Containers
+# Containers
 
 Hi, welcome to the lecture on Containers.
 

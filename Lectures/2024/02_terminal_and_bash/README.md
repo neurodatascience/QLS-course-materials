@@ -1,6 +1,6 @@
-# 2. Terminal and Bash
+# Terminal and Bash
 
-**Instructor:** Brent
+**Instructor:** Brent & Alyssa
 
 Hi everyone!
 

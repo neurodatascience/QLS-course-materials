@@ -1,4 +1,4 @@
-# 6. Intro to data wrangling with Pandas
+# Intro to data wrangling with Pandas
 
 **Instructor:** Jacob
 

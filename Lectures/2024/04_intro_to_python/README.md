@@ -1,4 +1,4 @@
-# 3. Introduction to Python
+# Introduction to Python
 
 **Instructor:** Jacob
 
