@@ -8,6 +8,6 @@ builtin = "clear,rare"
 
 [tool.isort]
 combine_as_imports = true
-line_length = 79
+line_length = 100
 profile = "black"
 skip_gitignore = true
