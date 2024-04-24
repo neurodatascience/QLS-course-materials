@@ -10,6 +10,7 @@ The steps are:
 - resample the mask to the images' resolution
 - mask the images
 """
+
 # Note we import the modules we created in the previous exercises
 import mask_transformations
 import numpy as np

@@ -1,4 +1,5 @@
 """Generate tree structure based on course from last year."""
+
 import shutil
 from pathlib import Path
 
