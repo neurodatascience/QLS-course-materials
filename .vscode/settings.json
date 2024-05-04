@@ -1,3 +1,4 @@
 {
-  "files.autoSave": "afterDelay"
+  "files.autoSave": "afterDelay",
+  "circleci.persistedProjectSelection": []
 }
