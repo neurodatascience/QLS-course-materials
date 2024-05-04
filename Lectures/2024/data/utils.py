@@ -38,4 +38,6 @@ def data_loader(n_subjects: int = 100, parcellation: str = "rois_ho"):
         / f"abide_nbsub-{n_subjects}_atlas-{parcellation.split('_')[1]}_meas-correlation_relmat.tsv"
     )
 
-    return pd.read_csv(input_file, sep="\t"), pd.read_csv(DATA_DIR / "participants.tsv", sep="\t")
+    return pd.read_csv(input_file, sep="\t"), pd.read_csv(
+        DATA_DIR / f"participants_nbsub-{n_subjects}.tsv", sep="\t"
+    )
