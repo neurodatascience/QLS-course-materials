@@ -16,13 +16,13 @@ from nilearn.connectome import ConnectivityMeasure
 
 output_dir: Path = Path(__file__).parent
 
-n_subjects: int = 100
+n_subjects: int = 200
 
 # data specific to regions defined by
-# the Harvard-Oxford atlas.
-parcellation: str = "rois_ho"
 # the Automatic Anatomical Labeling atlas.
 parcellation = "rois_aal"
+# the Harvard-Oxford atlas.
+parcellation: str = "rois_ho"
 
 # connectivity measure
 kind: str = "correlation"
@@ -33,7 +33,7 @@ def main() -> None:
 
     pheno = pd.DataFrame(data["phenotypic"]).drop(columns=["i", "Unnamed: 0"])
     pheno = pheno.fillna("n/a")
-    pheno.to_csv(output_dir / "participants.tsv", sep="\t", index=False)
+    pheno.to_csv(output_dir / f"participants_nbsub-{n_subjects}.tsv", sep="\t", index=False)
 
     features = data[parcellation]
 
