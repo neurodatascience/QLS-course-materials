@@ -1,0 +1,6 @@
+bokeh
+flake8
+jupyterlab
+matplotlib
+nilearn>=0.10.4
+seaborn
