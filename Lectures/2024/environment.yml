@@ -13,3 +13,4 @@ dependencies:
 -   plotly
 -   seaborn
 -   statsmodel
+-   wordcloud
