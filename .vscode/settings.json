@@ -1,3 +1,5 @@
 {
-    "circleci.persistedProjectSelection": []
+    "circleci.persistedProjectSelection": [
+        "gh/Remi-Gau/QLS-course-materials"
+    ]
 }

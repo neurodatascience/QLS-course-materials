@@ -5,10 +5,11 @@ channels:
 -   defaults
 dependencies:
 -   python=3.12
+-   bokeh
 -   flake8
 -   jupyterlab
--   nilearn
 -   matplotlib
--   seaborn
--   bokeh
+-   nilearn
 -   plotly
+-   seaborn
+-   statsmodel
