@@ -1,9 +1,0 @@
-Digraph g{
-    rankdir=LR;
-    node[fontname="DejaVuSans" width="0"];
-    D[label="Dimensionality\nreduction" shape="box"];
-    M[label="Linear or logistic\nregression" shape="box"];
-    y[label="ŷ" shape="plaintext"];
-    x[shape="plaintext"];
-    x -> D -> M -> y;
-}

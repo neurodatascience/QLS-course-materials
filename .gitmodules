@@ -4,9 +4,6 @@
 [submodule "Lectures/2020"]
 	path = Lectures/2020
 	url = https://github.com/neurodatascience/course-materials-2020
-[submodule "Lectures/2022/05-Git_GitHub/intro_git_github"]
-	path = Lectures/2022/05-Git_GitHub/intro_git_github
-	url = https://github.com/koudyk/intro_git_github.git
 [submodule "Lectures/2023"]
 	path = Lectures/2023
 	url = https://github.com/neurodatascience/course-materials-2023.git
