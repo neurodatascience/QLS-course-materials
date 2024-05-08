@@ -1,6 +1,6 @@
 # course-materials
 
-Materials for the NeuroDataScience Course (McGill QLSC612).
+Materials for the NeuroDataScience Course (McGill  QLSC612).
 
 - [Main Course Website](https://neurodatascience.github.io/QLS612-Overview/)
 
