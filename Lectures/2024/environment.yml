@@ -1,0 +1,16 @@
+---
+name: qlsc612
+channels:
+-   conda-forge
+-   defaults
+dependencies:
+-   python=3.12
+-   bokeh
+-   flake8
+-   jupyterlab
+-   matplotlib
+-   nilearn
+-   plotly
+-   seaborn
+-   statsmodels
+-   wordcloud

@@ -15,7 +15,7 @@ def main():
         if dir.name in skip_list:
             continue
 
-        for sub_dir in ["code", "exervises", "lecture"]:
+        for sub_dir in ["exercises", "lecture"]:
             dir_to_create = output_dir / dir.name.replace("-", "_").lower() / sub_dir
             dir_to_create.mkdir(exist_ok=True, parents=True)
 
