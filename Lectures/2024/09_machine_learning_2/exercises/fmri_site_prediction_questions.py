@@ -5,7 +5,7 @@
 #
 # We had some fMRI time series, that we used to compute a connectivity matrix
 # for each participant. We use the connectivity matrix values as our input
-# features to predict to which site the participant belongs, as well as clustering 
+# features to predict to which site the participant belongs, as well as clustering
 # the participants.
 #
 # ### Supervised Learning
@@ -64,7 +64,7 @@
 # and returns the matrices `X` and `y`. `prepare_pipelines` returns a
 # dictionary whose values are scikit-learn estimators and whose keys are names
 # for each estimator. All estimators are instances of scikit-learn's
-# `Pipeline`. 
+# `Pipeline`.
 #
 # At the moment `prepare_pipelines` only returns 2 estimators: the logistic
 # regression and a dummy estimator. Add a third estimator in the returned
@@ -120,27 +120,26 @@
 # Answer: use an atlas with less regions
 
 
-from logging import warning
+import sys
 import warnings
+from logging import warning
 
-from sklearn.base import clone
-from sklearn.preprocessing import LabelEncoder, StandardScaler
-from sklearn.model_selection import cross_validate
-from sklearn.pipeline import make_pipeline
-from sklearn.decomposition import PCA
-from sklearn.feature_selection import SelectKBest, f_classif
-from sklearn.linear_model import LogisticRegressionCV, LogisticRegression
-from sklearn.dummy import DummyClassifier
-from sklearn.cluster import KMeans, AgglomerativeClustering
 import numpy as np
-from scipy.cluster.hierarchy import dendrogram
-from sklearn.metrics import adjusted_rand_score, silhouette_score
-
-from matplotlib import pyplot as plt
 import pandas as pd
 import seaborn as sns
+from matplotlib import pyplot as plt
+from scipy.cluster.hierarchy import dendrogram
+from sklearn.base import clone
+from sklearn.cluster import AgglomerativeClustering, KMeans
+from sklearn.decomposition import PCA
+from sklearn.dummy import DummyClassifier
+from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
+from sklearn.metrics import adjusted_rand_score, silhouette_score
+from sklearn.model_selection import cross_validate
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-import sys
 sys.path.insert(0, "../../")
 
 from data.utils import data_loader
@@ -208,6 +207,7 @@ def compute_cv_scores(models, X, y):
         all_scores.append(model_scores)
     all_scores = pd.concat(all_scores)
     return all_scores
+
 
 def visualize_kmeans(data, n_clusters):
     # reduce the data to 2D for visualization
@@ -288,9 +288,7 @@ def visualize_hclstr(data, n_clusters):
                 current_count += counts[child_idx - n_samples]
         counts[i] = current_count
 
-    linkage_matrix = np.column_stack(
-        [model.children_, model.distances_, counts]
-    ).astype(float)
+    linkage_matrix = np.column_stack([model.children_, model.distances_, counts]).astype(float)
 
     # find the color threshold to have n_clusters
     color_threshold = linkage_matrix[-n_clusters + 1, 2]
@@ -310,9 +308,7 @@ def visualize_hclstr(data, n_clusters):
 
 if __name__ == "__main__":
 
-    
     data, participants = data_loader()
-
 
     X = data.to_numpy()[:, 1:]
     y = LabelEncoder().fit_transform(participants["SITE_ID"])
@@ -328,8 +324,8 @@ if __name__ == "__main__":
     pca = PCA().fit(X)
     plt.figure()
     plt.plot(np.cumsum(pca.explained_variance_ratio_))
-    plt.xlabel('number of components')
-    plt.ylabel('cumulative explained variance')
+    plt.xlabel("number of components")
+    plt.ylabel("cumulative explained variance")
     plt.show()
 
     X_pca = PCA(n_components=20).fit_transform(X)
@@ -379,7 +375,6 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.show()
 
-
     ## Clustering
 
     # apply PCA to reduce the data dimensionality
@@ -412,7 +407,6 @@ if __name__ == "__main__":
     print(f"Kmeans Silhouette Score: {silhouette_score(X_pca, labels_pred_kmeans)}")
 
     print(f"Hierarchical Clustering ARI score: {adjusted_rand_score(y, labels_pred_hierclstr)}")
-    print(f"Hierarchical Clustering Silhouette Score: {silhouette_score(X_pca, labels_pred_hierclstr)}")
-
-
-    
+    print(
+        f"Hierarchical Clustering Silhouette Score: {silhouette_score(X_pca, labels_pred_hierclstr)}"
+    )

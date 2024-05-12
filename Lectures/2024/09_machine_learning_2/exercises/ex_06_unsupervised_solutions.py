@@ -13,22 +13,24 @@
 # - Use the `adjusted_rand_score` and `silhouette_score` functions from `sklearn.metrics` to evaluate the clustering performance.
 
 
+import matplotlib.pyplot as plt
+
 # +
 import numpy as np
-from sklearn.datasets import load_digits
-from sklearn.cluster import KMeans, AgglomerativeClustering
-from sklearn.metrics import adjusted_rand_score, silhouette_score
 from scipy.cluster.hierarchy import dendrogram
+from sklearn.cluster import AgglomerativeClustering, KMeans
+from sklearn.datasets import load_digits
 from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
+from sklearn.metrics import adjusted_rand_score, silhouette_score
 
 # -
 
 
 # ## Utilities
 #
-# The functions below are helpers for clustering and visualization. 
+# The functions below are helpers for clustering and visualization.
 # You should read them but they do not need to be modified.
+
 
 def visualize_kmeans(data, n_clusters):
     # reduce the data to 2D for visualization
@@ -109,9 +111,7 @@ def visualize_hclstr(data, n_clusters):
                 current_count += counts[child_idx - n_samples]
         counts[i] = current_count
 
-    linkage_matrix = np.column_stack(
-        [model.children_, model.distances_, counts]
-    ).astype(float)
+    linkage_matrix = np.column_stack([model.children_, model.distances_, counts]).astype(float)
 
     # find the color threshold to have n_clusters
     color_threshold = linkage_matrix[-n_clusters + 1, 2]
@@ -143,8 +143,12 @@ X_pca = transformer.fit_transform(X)
 # PCA loadings
 loadings = transformer.components_
 # find the feature with the highest loading
-print(f"The index of the feature with the highest loading in the first component is: {np.argmax(np.abs(loadings[0]))} with loading: {loadings[0][np.argmax(np.abs(loadings[0]))]}")
-print(f"The index of the feature with the highest loading in the second component is: {np.argmax(np.abs(loadings[1]))} with loading: {loadings[1][np.argmax(np.abs(loadings[1]))]}")
+print(
+    f"The index of the feature with the highest loading in the first component is: {np.argmax(np.abs(loadings[0]))} with loading: {loadings[0][np.argmax(np.abs(loadings[0]))]}"
+)
+print(
+    f"The index of the feature with the highest loading in the second component is: {np.argmax(np.abs(loadings[1]))} with loading: {loadings[1][np.argmax(np.abs(loadings[1]))]}"
+)
 
 # plot pca components with y labels in 2D
 plt.figure()
