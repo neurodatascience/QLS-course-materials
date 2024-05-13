@@ -165,7 +165,7 @@ def prepare_pipelines():
 
     # Fancier logistic regression with hyperparameter selection using internal grid search
     # logreg = LogisticRegressionCV(solver="liblinear", cv=3, Cs=3)
-        
+
     logistic_reg = make_pipeline(clone(scaling), clone(logreg))
     # make_pipeline is a convenient way to create a Pipeline by passing the
     # steps as arguments. clone creates a copy of the input estimator, to avoid
@@ -317,7 +317,7 @@ if __name__ == "__main__":
 
     X = data.to_numpy()[:, 1:]
 
-    label_col = "DX_GROUP" #"SITE_ID" # "DX_GROUP"
+    label_col = "DX_GROUP"  # "SITE_ID" # "DX_GROUP"
     y = LabelEncoder().fit_transform(participants[label_col])
 
     # unique labels
@@ -337,7 +337,7 @@ if __name__ == "__main__":
     plt.show()
 
     X_pca = PCA(n_components=20).fit_transform(X)
-   
+
     # use select k best instead of PCA
     # X_selectK = SelectKBest(f_classif, k=300).fit_transform(X, y)
 
@@ -348,7 +348,7 @@ if __name__ == "__main__":
         plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=f"Label {i}")
     plt.title("PCA components")
     plt.legend()
-   
+
     # plot K best features with y labels
     # plt.figure()
     # for i in range(3):

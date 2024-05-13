@@ -384,7 +384,7 @@ if __name__ == "__main__":
     # PCA loadings
     loadings = transformer.components_
     # find the features with the highest loading
-    # Are there specfic features/connections that are more important in distinguishing the sites?
+    # Are there specific features/connections that are more important in distinguishing the sites?
     # find the 10 features with the highest loading in the first component
     top_features = np.argsort(np.abs(loadings[0, :]))[::-1][:10]
     print(top_features)

@@ -52,10 +52,10 @@ def visualize_kmeans(data, n_clusters):
     # Probably want to sort this to get sorted cluster order
 
     Z = kmeans.predict(np.c_[xx.ravel(), yy.ravel()])
-    print("-"*50)
+    print("-" * 50)
     cluster_order = np.unique(Z)
     print(cluster_order)
-    print("-"*50)
+    print("-" * 50)
     # Put the result into a color plot
     Z = Z.reshape(xx.shape)
     plt.figure()
