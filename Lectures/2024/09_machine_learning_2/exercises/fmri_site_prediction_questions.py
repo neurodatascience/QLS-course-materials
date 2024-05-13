@@ -159,8 +159,13 @@ def prepare_pipelines():
 
     """
     scaling = StandardScaler()
-    logreg = LogisticRegressionCV(solver="liblinear", cv=3, Cs=3)
+
+    # Simple logistic regression
     logreg = LogisticRegression(C=10)
+
+    # Fancier logistic regression with hyperparameter selection using internal grid search
+    # logreg = LogisticRegressionCV(solver="liblinear", cv=3, Cs=3)
+        
     logistic_reg = make_pipeline(clone(scaling), clone(logreg))
     # make_pipeline is a convenient way to create a Pipeline by passing the
     # steps as arguments. clone creates a copy of the input estimator, to avoid
@@ -311,10 +316,13 @@ if __name__ == "__main__":
     data, participants = data_loader()
 
     X = data.to_numpy()[:, 1:]
-    y = LabelEncoder().fit_transform(participants["SITE_ID"])
 
-    # unique sites
-    print(f"The number of unique sites is {len(np.unique(y))}")
+    label_col = "DX_GROUP" #"SITE_ID" # "DX_GROUP"
+    y = LabelEncoder().fit_transform(participants[label_col])
+
+    # unique labels
+    n_unique_labels = len(np.unique(y))
+    print(f"The number of unique labels is {n_unique_labels}")
 
     # print data dimensions
     print(f"Data dimensions: {X.shape}")
@@ -329,23 +337,25 @@ if __name__ == "__main__":
     plt.show()
 
     X_pca = PCA(n_components=20).fit_transform(X)
+   
     # use select k best instead of PCA
-    X_selectK = SelectKBest(f_classif, k=300).fit_transform(X, y)
+    # X_selectK = SelectKBest(f_classif, k=300).fit_transform(X, y)
 
     # compare the data after applying PCA and select K best features
     # plot pca components with y labels
     plt.figure()
-    for i in range(3):
-        plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=f"Site {i}")
+    for i in range(n_unique_labels):
+        plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=f"Label {i}")
     plt.title("PCA components")
     plt.legend()
+   
     # plot K best features with y labels
-    plt.figure()
-    for i in range(3):
-        plt.scatter(X_selectK[y == i, 0], X_selectK[y == i, 1], label=f"Site {i}")
-    plt.title("Select K best features")
-    plt.legend()
-    plt.show()
+    # plt.figure()
+    # for i in range(3):
+    #     plt.scatter(X_selectK[y == i, 0], X_selectK[y == i, 1], label=f"Site {i}")
+    # plt.title("Select K best features")
+    # plt.legend()
+    # plt.show()
 
     # # do the comparison in 3D
     # # PCA
@@ -371,32 +381,19 @@ if __name__ == "__main__":
     models = prepare_pipelines()
     all_scores = compute_cv_scores(models, X, y)
     print(all_scores.groupby("model").mean())
-    sns.stripplot(data=all_scores, x="train_score", y="model")
-    plt.tight_layout()
-    plt.show()
+    # sns.stripplot(data=all_scores, x="train_score", y="model")
+    # plt.tight_layout()
+    # plt.show()
 
     ## Clustering
-
-    # apply PCA to reduce the data dimensionality
-    # choose the number of components that explains 90% of the variance
-    transformer = PCA(n_components=58)
-    X_pca = transformer.fit_transform(X)
-    # PCA loadings
-    loadings = transformer.components_
-    # find the features with the highest loading
-    # Are there specfic features/connections that are more important in distinguishing the sites?
-    # find the 10 features with the highest loading in the first component
-    top_features = np.argsort(np.abs(loadings[0, :]))[::-1][:10]
-    print(top_features)
-    # print the loadings of the top features
-    print(loadings[0, top_features])
 
     # compare the performance of the models
     # try playing with the number of clusters
     # plot the data after applying kmeans clustering
-    labels_pred_kmeans = visualize_kmeans(data=X_pca, n_clusters=3)
+    n_clusters = 2
+    labels_pred_kmeans = visualize_kmeans(data=X_pca, n_clusters=n_clusters)
     # plot the data after applying hierarchical clustering
-    labels_pred_hierclstr = visualize_hclstr(data=X_pca, n_clusters=3)
+    labels_pred_hierclstr = visualize_hclstr(data=X_pca, n_clusters=n_clusters)
 
     plt.show()
 

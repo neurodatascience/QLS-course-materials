@@ -49,8 +49,13 @@ def visualize_kmeans(data, n_clusters):
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
 
     # Obtain labels for each point in mesh. Use last trained model.
-    Z = kmeans.predict(np.c_[xx.ravel(), yy.ravel()])
+    # Probably want to sort this to get sorted cluster order
 
+    Z = kmeans.predict(np.c_[xx.ravel(), yy.ravel()])
+    print("-"*50)
+    cluster_order = np.unique(Z)
+    print(cluster_order)
+    print("-"*50)
     # Put the result into a color plot
     Z = Z.reshape(xx.shape)
     plt.figure()
@@ -67,15 +72,18 @@ def visualize_kmeans(data, n_clusters):
     plt.plot(reduced_data[:, 0], reduced_data[:, 1], "k.", markersize=2)
     # Plot the centroids as a white X
     centroids = kmeans.cluster_centers_
-    plt.scatter(
-        centroids[:, 0],
-        centroids[:, 1],
-        marker="x",
-        s=169,
-        linewidths=3,
-        color="w",
-        zorder=10,
-    )
+    # plt.scatter(
+    #     centroids[:, 0],
+    #     centroids[:, 1],
+    #     marker= "x",
+    #     s=169,
+    #     linewidths=3,
+    #     color="w",
+    #     zorder=10,
+    # )
+    for marker, center in zip(cluster_order, centroids):
+        plt.text(center[0], center[1], str(marker), fontsize=30, color="white")
+
     plt.title(
         "K-means clustering on the data (PCA-reduced data)\n"
         "Centroids are marked with white cross"
@@ -140,6 +148,7 @@ print(f"# digits: {n_digits}; # samples: {n_samples}; # features {n_features}")
 transformer = PCA(n_components=2)
 X_pca = transformer.fit_transform(X)
 
+# TODO - get rid of the loadings exercise
 # PCA loadings
 loadings = transformer.components_
 # find the feature with the highest loading
@@ -175,8 +184,8 @@ plt.show()
 
 # visualize the data with hierarchical clustering
 # play with the number of clusters
-labels_pred_hierclstr = visualize_hclstr(data=X_pca, n_clusters=n_digits)
-plt.show()
+# labels_pred_hierclstr = visualize_hclstr(data=X_pca, n_clusters=n_digits)
+# plt.show()
 
 # Clustering Performance Evaluation
 # Here we will evaluate the performance of the clustering algorithms using ARI and the silhouette score.
@@ -200,10 +209,15 @@ print(f"Hierarchical Clustering Silhouette Score: {silhouette_score(X_pca, label
 #   - Answer: The data is clustered into 10 clusters in the sample space. The centroids are marked with white cross.
 # - What do you observe when you visualize the data with hierarchical clustering?
 #   - Answer: The dendrogram shows the hierarchy of clusters. The 10 clusters are specified with different colors.
-# - Do you think the data is well-suited for clustering?
+
+# TODO
+# - Do you think the data is well-suited for clustering? # How well does our data separate into clusters?
 #   - Answer: No, the data is not well-suited for clustering as the data is not clearly separated into clusters.
+
 # - What happened when you used a different number of clusters?
 #   - Answer: The data was clustered into the number of clusters specified. For example, if we used 6 clusters, the data was still clustered into 6 clusters.
+
+# TODO - clarify this is a sanity check and we usually don't have the true labels in "unsupervised" learning
 # - What do you think is the best number of clusters for this data?
 #   - Answer: The best number of clusters for this data is 10 based on our previous knowledge of the data.
 # - (OPTIONAL) But is the number of clusters estimated from the data the same as the true number of clusters?

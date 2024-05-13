@@ -134,6 +134,13 @@ def visualize_hclstr(data, n_clusters):
 X, y = load_digits(return_X_y=True)
 (n_samples, n_features), n_digits = X.shape, np.unique(y).size
 
+
+## Show sample images
+x_img_sample = X[0].reshape(8, 8)
+plt.imshow(x_img_sample, cmap="gray")
+plt.title("y label: " + str(y[0]))
+plt.show()
+
 print(f"# digits: {n_digits}; # samples: {n_samples}; # features {n_features}")
 
 # apply PCA to reduce the data to 2D or 3D??
