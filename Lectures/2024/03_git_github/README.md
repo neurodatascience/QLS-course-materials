@@ -16,8 +16,8 @@ In this material, we cover these topics:
 
 ## Pre-recorded lecture
 
-Here are my [pre-recorded lecture](https://youtu.be/b0ETTTKfu2Y)
-and ([slides](???)) that goes over the topics listed above.
+Here you'll find my [pre-recorded lecture](https://youtu.be/b0ETTTKfu2Y)
+and [slides](./lecture/git_github__lecture_slides.pdf).
 
 ## Before the in-class tutorial
 
