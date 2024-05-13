@@ -16,7 +16,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from sklearn import datasets
 from sklearn.dummy import DummyRegressor
-from sklearn.linear_model import LinearRegression, Lasso, Ridge
+from sklearn.linear_model import Lasso, LinearRegression, Ridge
 from sklearn.metrics import mean_squared_error
 
 # -
@@ -89,7 +89,7 @@ print("------------------ Use scikit-learn to fit the model -----------------")
 # Now let's use scikit-learn to fit the model to the training data.
 # +
 
-model_type = "Lasso" # "Lasso" or "Ridge" or "LinearRegression"
+model_type = "Lasso"  # "Lasso" or "Ridge" or "LinearRegression"
 
 if model_type == "LinearRegression":
     model = LinearRegression()
