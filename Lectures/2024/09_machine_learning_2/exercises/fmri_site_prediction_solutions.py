@@ -42,10 +42,6 @@
 # performance. This allows comparing logistic regression with and without PCA,
 # as well as a naive baseline.
 #
-# Moreover, instead of the plain `LogisticRegression`, we use scikit-learn's
-# `LogisticRegressionCV`, which automatically performs a nested
-# cross-validation loop on the training data to select the best hyperparameter.
-#
 # We therefore obtain a typical supervised learning experiment, with learning
 # pipelines that involve chained transformations, hyperparameter selection, a
 # cross-validation, and comparison of several models and a baseline.
@@ -83,14 +79,7 @@
 # the compressed design matrix)?
 # Answer: 6105 coefficients + intercept; principal components: 20 x 6105;
 # compressed X: 100 x 20.
-#
-# Here we are storing data and model coefficients in arrays of 64-bit
-# floating-point values, meaning each number takes 64 bits = 8 bytes of memory.
-# Approximately how much memory is used by the design matrix X? by the
-# dimensionality-reduced data (ie the kept left singular vectors of X)? by the
-# principal components (the kept right singular vectors of X)?
-# Answer: X: 4,884,000 B, compressed X: 16,000 B, V: 976,800 B
-# (+ 96 bytes for all for the array object)
+
 #
 # As you can see, in this script we do not specify explicitly the metric
 # functions that are used to evaluate models, but rely on scikit-learn's
@@ -112,9 +101,6 @@
 # Specify the cross-validation strategy explicitly, possibly choosing a
 # different one than the default.
 #
-# Add another estimator to the options returned by `prepare_pipelines`, that
-# uses univariate feature selection instead of PCA.
-#
 # What other approach could we use to obtain connectivity features of a lower
 # dimension?
 # Answer: use an atlas with less regions
@@ -126,7 +112,6 @@ from logging import warning
 
 import numpy as np
 import pandas as pd
-import seaborn as sns
 from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram
 from sklearn.base import clone
@@ -159,8 +144,13 @@ def prepare_pipelines():
 
     """
     scaling = StandardScaler()
-    logreg = LogisticRegressionCV(solver="liblinear", cv=3, Cs=3)
+
+    # Simple logistic regression
     logreg = LogisticRegression(C=10)
+
+    # Fancier logistic regression with hyperparameter selection using internal grid search
+    # logreg = LogisticRegressionCV(solver="liblinear", cv=3, Cs=3)
+        
     logistic_reg = make_pipeline(clone(scaling), clone(logreg))
     # make_pipeline is a convenient way to create a Pipeline by passing the
     # steps as arguments. clone creates a copy of the input estimator, to avoid
@@ -210,6 +200,11 @@ def compute_cv_scores(models, X, y):
 
 
 def visualize_kmeans(data, n_clusters):
+    '''
+    This function performs k-means clustering and visualizes the data with a decision boundary.
+    data: array-like, shape (n_samples, n_features)
+    n_clusters: int, number of clusters
+    '''
     # reduce the data to 2D for visualization
     pca = PCA(n_components=2)
     reduced_data = pca.fit_transform(data)
@@ -270,6 +265,11 @@ def visualize_kmeans(data, n_clusters):
 
 
 def visualize_hclstr(data, n_clusters):
+    '''
+    This function performs hierarchical clustering and visualizes the data with a dendrogram.
+    data: array-like, shape (n_samples, n_features)
+    n_clusters: int, number of clusters
+    '''
     # setting distance_threshold=0 ensures we compute the full tree.
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
 
@@ -306,15 +306,46 @@ def visualize_hclstr(data, n_clusters):
     return labels_pred
 
 
+def plot_clustering_evaluation_scores(
+    X, y, method, n_clusters_range
+):
+    '''
+    This function plots the ARI and silhouette scores for different number of clusters
+    method: str, the clustering method to use, either "kmeans" or "hierarchical"
+    n_clusters_range: range, the range of number of clusters to evaluate
+    '''
+
+    ari_scores = []
+    silhouette_scores = []
+    for n_clusters in n_clusters_range:
+        if method == "kmeans":
+            labels_pred = KMeans(n_clusters=n_clusters).fit_predict(X)
+        elif method == "hierarchical":
+            labels_pred = AgglomerativeClustering(n_clusters=n_clusters).fit_predict(X)
+        ari_scores.append(adjusted_rand_score(y, labels_pred))
+        silhouette_scores.append(silhouette_score(X, labels_pred))
+
+    plt.figure()
+    plt.plot(n_clusters_range, ari_scores, label="ARI")
+    plt.plot(n_clusters_range, silhouette_scores, label="Silhouette Score")
+    plt.xlabel("Number of clusters")
+    plt.ylabel("Score")
+    plt.legend()
+    plt.title(f"Performance of {method} clustering")
+
+
 if __name__ == "__main__":
 
     data, participants = data_loader()
 
     X = data.to_numpy()[:, 1:]
-    y = LabelEncoder().fit_transform(participants["SITE_ID"])
 
-    # unique sites
-    print(f"The number of unique sites is {len(np.unique(y))}")
+    label_col = "SITE_ID" #"SITE_ID" # "DX_GROUP"
+    y = LabelEncoder().fit_transform(participants[label_col])
+
+    # unique labels
+    n_unique_labels = len(np.unique(y))
+    print(f"The number of unique labels is {n_unique_labels}")
 
     # print data dimensions
     print(f"Data dimensions: {X.shape}")
@@ -324,79 +355,56 @@ if __name__ == "__main__":
     pca = PCA().fit(X)
     plt.figure()
     plt.plot(np.cumsum(pca.explained_variance_ratio_))
+    # add a red line at 90% of the variance
+    plt.axhline(y=0.9, color="r", linestyle="--")
     plt.xlabel("number of components")
     plt.ylabel("cumulative explained variance")
     plt.show()
 
-    X_pca = PCA(n_components=20).fit_transform(X)
-    # use select k best instead of PCA
-    X_selectK = SelectKBest(f_classif, k=300).fit_transform(X, y)
+    # Apply PCA to the data
+    # set the number of components so that 90% of the variance is explained
+    X_pca = PCA(n_components=58).fit_transform(X)
 
-    # compare the data after applying PCA and select K best features
-    # plot pca components with y labels
+    # Visualize the data after applying PCA
+    # plot the first 2 PCs with y labels
     plt.figure()
-    for i in range(3):
-        plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=f"Site {i}")
+    for i in range(n_unique_labels):
+        plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=f"Label {i}")
     plt.title("PCA components")
-    plt.legend()
-    # plot K best features with y labels
-    plt.figure()
-    for i in range(3):
-        plt.scatter(X_selectK[y == i, 0], X_selectK[y == i, 1], label=f"Site {i}")
-    plt.title("Select K best features")
+    plt.xlabel("PC1")
+    plt.ylabel("PC2")
     plt.legend()
     plt.show()
 
-    # # do the comparison in 3D
-    # # PCA
-    # plt.figure()
-    # from mpl_toolkits.mplot3d import Axes3D
-    # ax = plt.axes(projection='3d')
-    # for i in range(3):
-    #     ax.scatter(X_pca[y == i, 0], X_pca[y == i, 1], X_pca[y == i, 2], label=f"Site {i}")
-    # plt.title("PCA components")
-    # plt.legend()
-    # # select K best features
-    # plt.figure()
-    # from mpl_toolkits.mplot3d import Axes3D
-    # ax = plt.axes(projection='3d')
-    # for i in range(3):
-    #     ax.scatter(X_selectK[y == i, 0], X_selectK[y == i, 1], X_selectK[y == i, 2], label=f"Site {i}")
-    # plt.title("Select K best features")
-    # plt.legend()
-    # plt.show()
+    # Visualize the PCs in 3D
+    # plot the first 3 PCs with y labels
+    plt.figure()
+    from mpl_toolkits.mplot3d import Axes3D
+    ax = plt.axes(projection='3d')
+    for i in range(3):
+        ax.scatter(X_pca[y == i, 0], X_pca[y == i, 1], X_pca[y == i, 2], label=f"Site {i}")
+    plt.title("PCA components")
+    plt.legend()
+    plt.xlabel("PC1")
+    plt.ylabel("PC2")
+    ax.set_zlabel('PC3')
+    plt.show()
 
     ## Classification
     # Predicting site from fMRI: cross-validation and dimensionality reduction.
     models = prepare_pipelines()
     all_scores = compute_cv_scores(models, X, y)
     print(all_scores.groupby("model").mean())
-    sns.stripplot(data=all_scores, x="train_score", y="model")
-    plt.tight_layout()
-    plt.show()
 
     ## Clustering
-
-    # apply PCA to reduce the data dimensionality
-    # choose the number of components that explains 90% of the variance
-    transformer = PCA(n_components=58)
-    X_pca = transformer.fit_transform(X)
-    # PCA loadings
-    loadings = transformer.components_
-    # find the features with the highest loading
-    # Are there specific features/connections that are more important in distinguishing the sites?
-    # find the 10 features with the highest loading in the first component
-    top_features = np.argsort(np.abs(loadings[0, :]))[::-1][:10]
-    print(top_features)
-    # print the loadings of the top features
-    print(loadings[0, top_features])
 
     # compare the performance of the models
     # try playing with the number of clusters
     # plot the data after applying kmeans clustering
-    labels_pred_kmeans = visualize_kmeans(data=X_pca, n_clusters=3)
+    n_clusters = 3
+    labels_pred_kmeans = visualize_kmeans(data=X_pca, n_clusters=n_clusters)
     # plot the data after applying hierarchical clustering
-    labels_pred_hierclstr = visualize_hclstr(data=X_pca, n_clusters=3)
+    labels_pred_hierclstr = visualize_hclstr(data=X_pca, n_clusters=n_clusters)
 
     plt.show()
 
@@ -410,3 +418,9 @@ if __name__ == "__main__":
     print(
         f"Hierarchical Clustering Silhouette Score: {silhouette_score(X_pca, labels_pred_hierclstr)}"
     )
+
+    # find the best number of clusters using ARI and silhouette score by 
+    # plotting the scores for different number of clusters
+    plot_clustering_evaluation_scores(X_pca, y, "kmeans", n_clusters_range=range(2, 20))
+    plot_clustering_evaluation_scores(X_pca, y, "hierarchical", n_clusters_range=range(2, 20))
+    plt.show()
