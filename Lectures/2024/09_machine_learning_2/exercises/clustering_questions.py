@@ -141,31 +141,34 @@ def visualize_hclstr(data, n_clusters):
     return labels_pred
 
 def plot_clustering_evaluation_scores(
-    X, y, method, n_clusters_range
+    X, y, n_clusters_range, metric,
 ):
     '''
     This function plots the ARI and silhouette scores for different number of clusters
-    method: str, the clustering method to use, either "kmeans" or "hierarchical"
     n_clusters_range: range, the range of number of clusters to evaluate
+    metric: str, the metric to use, either "ARI" or "silhouette"
     '''
 
-    ari_scores = []
-    silhouette_scores = []
+    kmeans_scores = []
+    hierclstr_scores = []
     for n_clusters in n_clusters_range:
-        if method == "kmeans":
-            labels_pred = KMeans(n_clusters=n_clusters).fit_predict(X)
-        elif method == "hierarchical":
-            labels_pred = AgglomerativeClustering(n_clusters=n_clusters).fit_predict(X)
-        ari_scores.append(adjusted_rand_score(y, labels_pred))
-        silhouette_scores.append(silhouette_score(X, labels_pred))
+        labels_pred_kmeans = KMeans(n_clusters=n_clusters).fit_predict(X)
+        labels_pred_hierclstr = AgglomerativeClustering(n_clusters=n_clusters).fit_predict(X)
+        if metric == "ARI":
+            kmeans_scores.append(adjusted_rand_score(y, labels_pred_kmeans))
+            hierclstr_scores.append(adjusted_rand_score(y, labels_pred_hierclstr))
+        elif metric == "silhouette":
+            kmeans_scores.append(silhouette_score(X, labels_pred_kmeans))
+            hierclstr_scores.append(silhouette_score(X, labels_pred_hierclstr))
 
     plt.figure()
-    plt.plot(n_clusters_range, ari_scores, label="ARI")
-    plt.plot(n_clusters_range, silhouette_scores, label="Silhouette Score")
+    plt.plot(n_clusters_range, kmeans_scores, label="kmeans")
+    plt.plot(n_clusters_range, hierclstr_scores, label="hirarchical")
     plt.xlabel("Number of clusters")
     plt.ylabel("Score")
     plt.legend()
-    plt.title(f"Performance of {method} clustering")
+    plt.title(f"Performance of clustering using {metric} score")
+    plt.show()
 
 
 ## Main exercise
