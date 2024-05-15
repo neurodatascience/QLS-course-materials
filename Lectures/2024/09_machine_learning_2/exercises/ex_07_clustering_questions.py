@@ -33,11 +33,11 @@ from sklearn.metrics import adjusted_rand_score, silhouette_score
 
 
 def visualize_kmeans(data, n_clusters):
-    '''
+    """
     This function performs k-means clustering and visualizes the data with a decision boundary.
     data: array-like, shape (n_samples, n_features)
     n_clusters: int, number of clusters
-    '''
+    """
     # reduce the data to 2D for visualization
     pca = PCA(n_components=2)
     reduced_data = pca.fit_transform(data)
@@ -76,7 +76,7 @@ def visualize_kmeans(data, n_clusters):
     plt.scatter(
         centroids[:, 0],
         centroids[:, 1],
-        marker= "x",
+        marker="x",
         s=169,
         linewidths=3,
         color="w",
@@ -100,11 +100,11 @@ def visualize_kmeans(data, n_clusters):
 
 
 def visualize_hclstr(data, n_clusters):
-    '''
+    """
     This function performs hierarchical clustering and visualizes the data with a dendrogram.
     data: array-like, shape (n_samples, n_features)
     n_clusters: int, number of clusters
-    '''
+    """
     # setting distance_threshold=0 ensures we compute the full tree.
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
 
@@ -140,14 +140,18 @@ def visualize_hclstr(data, n_clusters):
 
     return labels_pred
 
+
 def plot_clustering_evaluation_scores(
-    X, y, n_clusters_range, metric,
+    X,
+    y,
+    n_clusters_range,
+    metric,
 ):
-    '''
+    """
     This function plots the ARI and silhouette scores for different number of clusters
     n_clusters_range: range, the range of number of clusters to evaluate
     metric: str, the metric to use, either "ARI" or "silhouette"
-    '''
+    """
 
     kmeans_scores = []
     hierclstr_scores = []
@@ -208,7 +212,6 @@ X_pca = transformer.fit_transform(X)
 # - Plot the ARI and silhouette scores for different number of clusters
 # - Determine the optimal number of clusters for the data.
 # - Compare the results with the number of clusters you have chosen.
-
 
 
 # ## Questions
