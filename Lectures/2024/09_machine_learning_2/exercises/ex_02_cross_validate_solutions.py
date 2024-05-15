@@ -21,7 +21,13 @@ scores = model_selection.cross_validate(
     model, X, y, scoring="neg_mean_squared_error", cv=model_selection.KFold(5)
 )
 # TODO_END
-print(f"\nCross-validation result:\n\n{scores}")
+fit_time = scores["fit_time"]
+score_time = scores["score_time"]
+test_score = scores["test_score"].round(2)
+
+print(f"Fit time: {fit_time}")
+print(f"Score time: {score_time}")
+print(f"Test score (i.e. neg_mean_squared_error): {test_score}")
 
 # if I am satisfied with scores
 model.fit(X, y)
