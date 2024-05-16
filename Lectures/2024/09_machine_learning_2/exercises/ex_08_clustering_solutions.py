@@ -2,7 +2,7 @@
 # In this exercise, you will perform clustering on the handwritten digits data using k-means and hierarchical clustering. You will visualize the data with k-means and hierarchical clustering and answer some questions.
 # ## Instructions
 # - Load the the handwritten digits data
-# - Visualize the data with PCA components.
+# - Reduce the dimensionality of the data with PCA.
 # - Visualize the data with k-means clustering.
 # - Visualize the data with hierarchical clustering.
 # - Answer the questions.
@@ -33,6 +33,11 @@ from sklearn.metrics import adjusted_rand_score, silhouette_score
 
 
 def visualize_kmeans(data, n_clusters):
+    '''
+    This function performs k-means clustering and visualizes the data with a decision boundary.
+    data: array-like, shape (n_samples, n_features)
+    n_clusters: int, number of clusters
+    '''
     # reduce the data to 2D for visualization
     pca = PCA(n_components=2)
     reduced_data = pca.fit_transform(data)
@@ -49,8 +54,9 @@ def visualize_kmeans(data, n_clusters):
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
 
     # Obtain labels for each point in mesh. Use last trained model.
-    Z = kmeans.predict(np.c_[xx.ravel(), yy.ravel()])
+    # Probably want to sort this to get sorted cluster order
 
+    Z = kmeans.predict(np.c_[xx.ravel(), yy.ravel()])
     # Put the result into a color plot
     Z = Z.reshape(xx.shape)
     plt.figure()
@@ -70,12 +76,13 @@ def visualize_kmeans(data, n_clusters):
     plt.scatter(
         centroids[:, 0],
         centroids[:, 1],
-        marker="x",
+        marker= "x",
         s=169,
         linewidths=3,
         color="w",
         zorder=10,
     )
+
     plt.title(
         "K-means clustering on the data (PCA-reduced data)\n"
         "Centroids are marked with white cross"
@@ -93,6 +100,11 @@ def visualize_kmeans(data, n_clusters):
 
 
 def visualize_hclstr(data, n_clusters):
+    '''
+    This function performs hierarchical clustering and visualizes the data with a dendrogram.
+    data: array-like, shape (n_samples, n_features)
+    n_clusters: int, number of clusters
+    '''
     # setting distance_threshold=0 ensures we compute the full tree.
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
 
@@ -128,69 +140,68 @@ def visualize_hclstr(data, n_clusters):
 
     return labels_pred
 
+def plot_clustering_evaluation_scores(
+    X, y, n_clusters_range, metric,
+):
+    '''
+    This function plots the ARI and silhouette scores for different number of clusters
+    n_clusters_range: range, the range of number of clusters to evaluate
+    metric: str, the metric to use, either "ARI" or "silhouette"
+    '''
+
+    kmeans_scores = []
+    hierclstr_scores = []
+    for n_clusters in n_clusters_range:
+        labels_pred_kmeans = KMeans(n_clusters=n_clusters).fit_predict(X)
+        labels_pred_hierclstr = AgglomerativeClustering(n_clusters=n_clusters).fit_predict(X)
+        if metric == "ARI":
+            kmeans_scores.append(adjusted_rand_score(y, labels_pred_kmeans))
+            hierclstr_scores.append(adjusted_rand_score(y, labels_pred_hierclstr))
+        elif metric == "silhouette":
+            kmeans_scores.append(silhouette_score(X, labels_pred_kmeans))
+            hierclstr_scores.append(silhouette_score(X, labels_pred_hierclstr))
+
+    plt.figure()
+    plt.plot(n_clusters_range, kmeans_scores, label="kmeans")
+    plt.plot(n_clusters_range, hierclstr_scores, label="hirarchical")
+    plt.xlabel("Number of clusters")
+    plt.ylabel("Score")
+    plt.legend()
+    plt.title(f"Performance of clustering using {metric} score")
+    plt.show()
+
 
 ## Main exercise
 
 X, y = load_digits(return_X_y=True)
 (n_samples, n_features), n_digits = X.shape, np.unique(y).size
 
-
-## Show sample images
-x_img_sample = X[0].reshape(8, 8)
-plt.imshow(x_img_sample, cmap="gray")
-plt.title("y label: " + str(y[0]))
-plt.show()
-
 print(f"# digits: {n_digits}; # samples: {n_samples}; # features {n_features}")
 
-# apply PCA to reduce the data to 2D or 3D??
-# X_pca = ?
-#
-
-# PCA loadings
-# loadings = ?
-# find the feature with the highest loading
-# fill in the blanks below
-# print(f"The index of the feature with the highest loading in the first component is: {?} with loading: {?}")
-# print(f"The index of the feature with the highest loading in the second component is: {?} with loading: {?}")
-
-# # plot pca components with y labels in 2D
-# plt.figure()
-# for i in range(n_digits):
-#     plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=i)
-# plt.legend()
-# plt.title("PCA components with y labels 2D")
-# plt.show()
-
-# # plot 3D PCA components with y labels
-# plt.figure()
-# from mpl_toolkits.mplot3d import Axes3D
-# ax = plt.axes(projection='3d')
-# for i in range(n_digits):
-#     ax.scatter(X_pca[y == i, 0], X_pca[y == i, 1], X_pca[y == i, 2], label=i)
-# plt.legend()
-# plt.title("PCA components with y labels 3D")
-# plt.show()
+# apply PCA to reduce the data dimensionality
+# you can play with the number of components
+# but for this exercise, we will use number of components = n_digits
+transformer = PCA(n_components=n_digits)
+X_pca = transformer.fit_transform(X)
 
 # visualize the data with kmeans clustering
 # play with the number of clusters
-# labels_pred_kmeans = visualize_kmeans(data=X_pca, n_clusters=n_digits)
-# plt.show()
+labels_pred_kmeans = visualize_kmeans(data=X_pca, n_clusters=n_digits)
+plt.show()
 
 # visualize the data with hierarchical clustering
 # play with the number of clusters
-# labels_pred_hierclstr = visualize_hclstr(data=X_pca, n_clusters=n_digits)
-# plt.show()
+labels_pred_hierclstr = visualize_hclstr(data=X_pca, n_clusters=n_digits)
+plt.show()
 
 # Clustering Performance Evaluation
 # Here we will evaluate the performance of the clustering algorithms using ARI and the silhouette score.
-# fill in the blanks below
 
-# print(f"Kmeans ARI score: {?}")
-# print(f"Kmeans Silhouette Score: {?}")
+print(f"Kmeans ARI score: {adjusted_rand_score(y, labels_pred_kmeans)}")
+print(f"Kmeans Silhouette Score: {silhouette_score(X_pca, labels_pred_kmeans)}")
 
-# print(f"Hierarchical Clustering ARI score: {?}")
-# print(f"Hierarchical Clustering Silhouette Score: {?}")
+print(f"Hierarchical Clustering ARI score: {adjusted_rand_score(y, labels_pred_hierclstr)}")
+print(f"Hierarchical Clustering Silhouette Score: {silhouette_score(X_pca, labels_pred_hierclstr)}")
 
 
 # ## Additional exercise (optional)
@@ -198,6 +209,17 @@ print(f"# digits: {n_digits}; # samples: {n_samples}; # features {n_features}")
 # - Determine the optimal number of clusters for the data.
 # - Compare the results with the number of clusters you have chosen.
 
+plot_clustering_evaluation_scores(
+    X_pca, y, 
+    n_clusters_range=range(2, 20),
+    metric="ARI"
+)
+
+plot_clustering_evaluation_scores(
+    X_pca, y, 
+    n_clusters_range=range(2, 20),
+    metric="silhouette"
+)
 
 # ## Questions
 #
@@ -205,12 +227,14 @@ print(f"# digits: {n_digits}; # samples: {n_samples}; # features {n_features}")
 #   - Answer: The data is clustered into 10 clusters in the sample space. The centroids are marked with white cross.
 # - What do you observe when you visualize the data with hierarchical clustering?
 #   - Answer: The dendrogram shows the hierarchy of clusters. The 10 clusters are specified with different colors.
-# - Do you think the data is well-suited for clustering?
-#   - Answer: No, the data is not well-suited for clustering as the data is not clearly separated into clusters.
-# - What happened when you used a different number of clusters?
+# - How well does our data separate into clusters?
+#   - Answer: The data separates relatively well into clusters based on the visualization in PCA exercise.
+# - What happened when you used a different number of clusters than n_digits?
 #   - Answer: The data was clustered into the number of clusters specified. For example, if we used 6 clusters, the data was still clustered into 6 clusters.
+#             But the ARI value decreased.
 # - What do you think is the best number of clusters for this data?
 #   - Answer: The best number of clusters for this data is 10 based on our previous knowledge of the data.
-# - (OPTIONAL) But is the number of clusters estimated from the data the same as the true number of clusters?
-#   - Answer: ???
-#
+#             But we won't always have this information in all cases. We have to use clustering evaluation
+#             techniques to find the optimum number of clusters and compare it to the true number as a sanity check.
+# - (OPTIONAL) Is the number of clusters estimated from the data the same as the true number of clusters?
+#   - Answer: For k-means, no (the optimum n_clusters found was 12). For hierarchical clustering, yes. 

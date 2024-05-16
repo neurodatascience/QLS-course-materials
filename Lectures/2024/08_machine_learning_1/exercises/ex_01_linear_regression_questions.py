@@ -71,10 +71,10 @@ initial_model_intercept = np.random.uniform(0, 1, 1)
 
 # TODO
 # **Exercise**: write code to calculate y_hat for all training samples!
-
+# y_train_hat = ...
 
 # What is the error between model prediction (y_hat) and true values?
-# initial_mse = np.mean((y_train_hat - y_train)**2)
+# initial_mse = ...
 
 # ------ Uncomment lines in this block to print results -------
 
