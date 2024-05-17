@@ -23,13 +23,13 @@ fit_time = scores["fit_time"]
 score_time = scores["score_time"]
 test_score = scores["test_score"].round(2)
 
-print("-"*50)
+print("-" * 50)
 print("Default GridSearchCV with Ridge model:")
-print("-"*50)
+print("-" * 50)
 print(f"Fit time: {fit_time}")
 print(f"Score time: {score_time}")
 print(f"Test score (i.e. neg_mean_squared_error): {test_score}")
-print("-"*50)
+print("-" * 50)
 # scikit-learn also has a `RidgeCV` model that does this gridsearch much more
 # efficiently.
 
@@ -41,8 +41,8 @@ score_time = ridgecv_scores["score_time"]
 test_score = ridgecv_scores["test_score"].round(2)
 
 print("More efficient RidgeCV model:")
-print("-"*50)
+print("-" * 50)
 print(f"Fit time: {fit_time}")
 print(f"Score time: {score_time}")
 print(f"Test score (i.e. neg_mean_squared_error): {test_score}")
-print("-"*50)
+print("-" * 50)

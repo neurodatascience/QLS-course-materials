@@ -1,7 +1,8 @@
 from pathlib import Path
+
 import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
+import seaborn as sns
 
 # load data
 data_path = Path(__file__).resolve().parents[3] / "data" / "participants_nbsub-200.tsv"

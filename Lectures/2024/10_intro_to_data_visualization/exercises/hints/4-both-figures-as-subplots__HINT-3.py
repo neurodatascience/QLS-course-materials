@@ -1,7 +1,8 @@
 from pathlib import Path
+
 import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
+import seaborn as sns
 
 # summary stats data for Verbal IQ
 groups = ["Autism", "Control"]

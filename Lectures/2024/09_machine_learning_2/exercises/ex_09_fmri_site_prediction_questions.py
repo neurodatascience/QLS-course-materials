@@ -144,7 +144,7 @@ def prepare_pipelines():
 
     # Fancier logistic regression with hyperparameter selection using internal grid search
     # logreg = LogisticRegressionCV(solver="liblinear", cv=3, Cs=3)
-        
+
     logistic_reg = make_pipeline(clone(scaling), clone(logreg))
     # make_pipeline is a convenient way to create a Pipeline by passing the
     # steps as arguments. clone creates a copy of the input estimator, to avoid
@@ -190,11 +190,11 @@ def compute_cv_scores(models, X, y):
 
 
 def visualize_kmeans(data, n_clusters):
-    '''
+    """
     This function performs k-means clustering and visualizes the data with a decision boundary.
     data: array-like, shape (n_samples, n_features)
     n_clusters: int, number of clusters
-    '''
+    """
     # reduce the data to 2D for visualization
     pca = PCA(n_components=2)
     reduced_data = pca.fit_transform(data)
@@ -255,11 +255,11 @@ def visualize_kmeans(data, n_clusters):
 
 
 def visualize_hclstr(data, n_clusters):
-    '''
+    """
     This function performs hierarchical clustering and visualizes the data with a dendrogram.
     data: array-like, shape (n_samples, n_features)
     n_clusters: int, number of clusters
-    '''
+    """
     # setting distance_threshold=0 ensures we compute the full tree.
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
 
@@ -297,13 +297,16 @@ def visualize_hclstr(data, n_clusters):
 
 
 def plot_clustering_evaluation_scores(
-    X, y, n_clusters_range, metric,
+    X,
+    y,
+    n_clusters_range,
+    metric,
 ):
-    '''
+    """
     This function plots the ARI and silhouette scores for different number of clusters
     n_clusters_range: range, the range of number of clusters to evaluate
     metric: str, the metric to use, either "ARI" or "silhouette"
-    '''
+    """
 
     kmeans_scores = []
     hierclstr_scores = []
@@ -319,7 +322,7 @@ def plot_clustering_evaluation_scores(
 
     plt.figure()
     plt.plot(n_clusters_range, kmeans_scores, label="kmeans")
-    plt.plot(n_clusters_range, hierclstr_scores, label="hirarchical")
+    plt.plot(n_clusters_range, hierclstr_scores, label="hierarchical")
     plt.xlabel("Number of clusters")
     plt.ylabel("Score")
     plt.legend()
@@ -333,7 +336,7 @@ if __name__ == "__main__":
 
     X = data.to_numpy()[:, 1:]
 
-    label_col = "SITE_ID" #"SITE_ID" # "DX_GROUP"
+    label_col = "SITE_ID"  # "SITE_ID" # "DX_GROUP"
     y = LabelEncoder().fit_transform(participants[label_col])
 
     # unique labels
@@ -356,7 +359,7 @@ if __name__ == "__main__":
 
     # Apply PCA to the data
     # set the number of components so that 90% of the variance is explained
-    #X_pca = PCA(n_components=?).fit_transform(X)
+    # X_pca = PCA(n_components=?).fit_transform(X)
 
     # Visualize the data after applying PCA
     # plot the first 2 PCs with y labels
@@ -373,14 +376,15 @@ if __name__ == "__main__":
     # plot the first 3 PCs with y labels
     plt.figure()
     from mpl_toolkits.mplot3d import Axes3D
-    ax = plt.axes(projection='3d')
+
+    ax = plt.axes(projection="3d")
     for i in range(3):
         ax.scatter(X_pca[y == i, 0], X_pca[y == i, 1], X_pca[y == i, 2], label=f"Site {i}")
     plt.title("PCA components")
     plt.legend()
     plt.xlabel("PC1")
     plt.ylabel("PC2")
-    ax.set_zlabel('PC3')
+    ax.set_zlabel("PC3")
     plt.show()
 
     ## Classification
@@ -412,6 +416,6 @@ if __name__ == "__main__":
     #     f"Hierarchical Clustering Silhouette Score: {?}"
     # )
 
-    # find the best number of clusters using ARI and silhouette score by 
+    # find the best number of clusters using ARI and silhouette score by
     # plotting the scores for different number of clusters
     # Is the best number of clusters clear from the plots?

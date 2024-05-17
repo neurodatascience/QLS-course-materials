@@ -33,11 +33,11 @@ from sklearn.metrics import adjusted_rand_score, silhouette_score
 
 
 def visualize_kmeans(data, n_clusters):
-    '''
+    """
     This function performs k-means clustering and visualizes the data with a decision boundary.
     data: array-like, shape (n_samples, n_features)
     n_clusters: int, number of clusters
-    '''
+    """
     # reduce the data to 2D for visualization
     pca = PCA(n_components=2)
     reduced_data = pca.fit_transform(data)
@@ -76,7 +76,7 @@ def visualize_kmeans(data, n_clusters):
     plt.scatter(
         centroids[:, 0],
         centroids[:, 1],
-        marker= "x",
+        marker="x",
         s=169,
         linewidths=3,
         color="w",
@@ -100,11 +100,11 @@ def visualize_kmeans(data, n_clusters):
 
 
 def visualize_hclstr(data, n_clusters):
-    '''
+    """
     This function performs hierarchical clustering and visualizes the data with a dendrogram.
     data: array-like, shape (n_samples, n_features)
     n_clusters: int, number of clusters
-    '''
+    """
     # setting distance_threshold=0 ensures we compute the full tree.
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
 
@@ -140,14 +140,18 @@ def visualize_hclstr(data, n_clusters):
 
     return labels_pred
 
+
 def plot_clustering_evaluation_scores(
-    X, y, n_clusters_range, metric,
+    X,
+    y,
+    n_clusters_range,
+    metric,
 ):
-    '''
+    """
     This function plots the ARI and silhouette scores for different number of clusters
     n_clusters_range: range, the range of number of clusters to evaluate
     metric: str, the metric to use, either "ARI" or "silhouette"
-    '''
+    """
 
     kmeans_scores = []
     hierclstr_scores = []
@@ -163,7 +167,7 @@ def plot_clustering_evaluation_scores(
 
     plt.figure()
     plt.plot(n_clusters_range, kmeans_scores, label="kmeans")
-    plt.plot(n_clusters_range, hierclstr_scores, label="hirarchical")
+    plt.plot(n_clusters_range, hierclstr_scores, label="hierarchical")
     plt.xlabel("Number of clusters")
     plt.ylabel("Score")
     plt.legend()
@@ -209,17 +213,9 @@ print(f"Hierarchical Clustering Silhouette Score: {silhouette_score(X_pca, label
 # - Determine the optimal number of clusters for the data.
 # - Compare the results with the number of clusters you have chosen.
 
-plot_clustering_evaluation_scores(
-    X_pca, y, 
-    n_clusters_range=range(2, 20),
-    metric="ARI"
-)
+plot_clustering_evaluation_scores(X_pca, y, n_clusters_range=range(2, 20), metric="ARI")
 
-plot_clustering_evaluation_scores(
-    X_pca, y, 
-    n_clusters_range=range(2, 20),
-    metric="silhouette"
-)
+plot_clustering_evaluation_scores(X_pca, y, n_clusters_range=range(2, 20), metric="silhouette")
 
 # ## Questions
 #
@@ -237,4 +233,4 @@ plot_clustering_evaluation_scores(
 #             But we won't always have this information in all cases. We have to use clustering evaluation
 #             techniques to find the optimum number of clusters and compare it to the true number as a sanity check.
 # - (OPTIONAL) Is the number of clusters estimated from the data the same as the true number of clusters?
-#   - Answer: For k-means, no (the optimum n_clusters found was 12). For hierarchical clustering, yes. 
+#   - Answer: For k-means, no (the optimum n_clusters found was 12). For hierarchical clustering, yes.
