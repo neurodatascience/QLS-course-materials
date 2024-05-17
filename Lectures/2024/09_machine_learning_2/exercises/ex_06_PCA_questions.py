@@ -7,7 +7,6 @@
 # - Use the `PCA` class from `sklearn.decomposition` to reduce the dimensionality of the data.
 
 import matplotlib.pyplot as plt
-
 import numpy as np
 from sklearn.datasets import load_digits
 

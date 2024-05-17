@@ -47,8 +47,3 @@ With a partner
   - Social function
 - **Vineland** - Vineland Adaptive Behavior Scales
   - Daily functioning
-
-
-
-
-

@@ -7,7 +7,6 @@
 # - Use the `PCA` class from `sklearn.decomposition` to reduce the dimensionality of the data.
 
 import matplotlib.pyplot as plt
-
 import numpy as np
 from sklearn.datasets import load_digits
 from sklearn.decomposition import PCA
@@ -43,7 +42,8 @@ plt.show()
 # plot 3D PCA components with y labels
 plt.figure()
 from mpl_toolkits.mplot3d import Axes3D
-ax = plt.axes(projection='3d')
+
+ax = plt.axes(projection="3d")
 for i in range(n_digits):
     ax.scatter(X_pca[y == i, 0], X_pca[y == i, 1], X_pca[y == i, 2], label=i)
 plt.legend()
