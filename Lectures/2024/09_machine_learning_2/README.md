@@ -14,7 +14,7 @@ To run the exercises we need python 3.7 or newer and the packages listed in
 `exercises/requirements.txt` -- if you followed the [setup instructions](https://neurodatascience.github.io/QLS612-Overview/setup.html) on
 the course website you have all this already.
 
-The slides for the lecture are in `???`,
+Here are the [slides](https://docs.google.com/presentation/d/12JWfc2RN54hu2oCTkM8GWwPFs49m8WK_VcM8rkeWpjI/edit?usp=sharing) for the lecture
 and during the lecture we will regularly pause to edit
 and execute scripts found in `exercises`.
 
