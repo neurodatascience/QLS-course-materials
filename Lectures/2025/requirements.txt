@@ -1,0 +1,7 @@
+bokeh
+flake8
+jupyterlab
+nilearn[plotting]>=0.10.4
+seaborn
+statsmodels
+wordcloud
