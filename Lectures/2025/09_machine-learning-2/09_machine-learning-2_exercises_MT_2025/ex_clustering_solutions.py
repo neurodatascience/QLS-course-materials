@@ -31,11 +31,11 @@ from sklearn.metrics import adjusted_rand_score, silhouette_score
 
 
 def visualize_kmeans(data, n_clusters):
-    '''
+    """
     This function performs k-means clustering and visualizes the data with a decision boundary.
     data: array-like, shape (n_samples, n_features)
     n_clusters: int, number of clusters
-    '''
+    """
     # reduce the data to 2D for visualization
     pca = PCA(n_components=2)
     reduced_data = pca.fit_transform(data)
@@ -74,7 +74,7 @@ def visualize_kmeans(data, n_clusters):
     plt.scatter(
         centroids[:, 0],
         centroids[:, 1],
-        marker= "x",
+        marker="x",
         s=169,
         linewidths=3,
         color="w",
@@ -94,13 +94,16 @@ def visualize_kmeans(data, n_clusters):
 
 
 def plot_clustering_evaluation_scores(
-    X, y, n_clusters_range, metric,
+    X,
+    y,
+    n_clusters_range,
+    metric,
 ):
-    '''
+    """
     This function plots the ARI and silhouette scores for different number of clusters
     n_clusters_range: range, the range of number of clusters to evaluate
     metric: str, the metric to use, either "ARI" or "silhouette"
-    '''
+    """
 
     kmeans_scores = []
     for n_clusters in n_clusters_range:
@@ -126,14 +129,14 @@ X, y = load_digits(return_X_y=True)
 print(f"# digits: {n_digits}; # samples: {n_samples}; # features {n_features}")
 
 # visualize the data with kmeans clustering in 2D space
-# The purpose of this part is just for you to 
+# The purpose of this part is just for you to
 # play with the number of clusters and see how the data is clustered
 # and how the centroids are placed.
 visualize_kmeans(data=X, n_clusters=n_digits)
 
 # First, apply PCA to reduce the data dimensionality
 # you can play with the number of components
-# but for this exercise, choose 
+# but for this exercise, choose
 # the number of components such that 90% of the variance is explained
 transformer = PCA(n_components=0.9)
 X_pca = transformer.fit_transform(X)
@@ -152,17 +155,9 @@ print(f"Kmeans Silhouette Score: {silhouette_score(X_pca, labels_pred):.2f}")
 # - Determine the optimal number of clusters for the data.
 # - Compare the results with the number of clusters you have chosen.
 
-plot_clustering_evaluation_scores(
-    X_pca, y, 
-    n_clusters_range=range(2, 20),
-    metric="ARI"
-)
+plot_clustering_evaluation_scores(X_pca, y, n_clusters_range=range(2, 20), metric="ARI")
 
-plot_clustering_evaluation_scores(
-    X_pca, y, 
-    n_clusters_range=range(2, 20),
-    metric="silhouette"
-)
+plot_clustering_evaluation_scores(X_pca, y, n_clusters_range=range(2, 20), metric="silhouette")
 
 # ## Questions
 #

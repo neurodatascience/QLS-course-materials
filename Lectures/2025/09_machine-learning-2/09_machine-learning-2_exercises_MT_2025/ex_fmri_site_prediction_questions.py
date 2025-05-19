@@ -67,6 +67,7 @@ import warnings
 from logging import warning
 
 import numpy as np
+from data.utils import data_loader
 from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -78,37 +79,38 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 # sys.path.insert(0, "../../")
 
-from data.utils import data_loader
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 
-
 def load_data():
-    '''
+    """
     This function loads the fMRI site data and connectivity features
     and returns the features and labels.
     X: array-like, shape (n_samples, n_features)
     y: array-like, shape (n_samples,)
-    '''
+    """
     data, participants = data_loader()
 
     X = data.to_numpy()[:, 1:]
 
-    label_col = "SITE_ID" #"SITE_ID" # "DX_GROUP"
+    label_col = "SITE_ID"  # "SITE_ID" # "DX_GROUP"
     y = LabelEncoder().fit_transform(participants[label_col])
 
     return X, y
 
 
 def plot_clustering_evaluation_scores(
-    X, y, n_clusters_range, metric,
+    X,
+    y,
+    n_clusters_range,
+    metric,
 ):
-    '''
+    """
     This function plots the ARI and silhouette scores for different number of clusters
     n_clusters_range: range, the range of number of clusters to evaluate
     metric: str, the metric to use, either "ARI" or "silhouette"
-    '''
+    """
 
     kmeans_scores = []
     for n_clusters in n_clusters_range:
@@ -138,9 +140,8 @@ if __name__ == "__main__":
     # print data dimensions
     print(f"Data dimensions: number of samples: {X.shape[0]}, number of features: {X.shape[1]}")
 
-    
     ## Visualize the data
-    
+
     # Apply PCA to the data to make it visualizable!
     X_pca = PCA(n_components=3).fit_transform(X)
 
@@ -159,7 +160,8 @@ if __name__ == "__main__":
     # plot the first 3 PCs with y labels
     plt.figure(figsize=(10, 10))
     from mpl_toolkits.mplot3d import Axes3D
-    ax = plt.axes(projection='3d')
+
+    ax = plt.axes(projection="3d")
     for i in range(n_unique_labels):
         ax.scatter(X_pca[y == i, 0], X_pca[y == i, 1], X_pca[y == i, 2], label=f"Site {i}", s=50)
     plt.title("PCA components")
@@ -169,12 +171,11 @@ if __name__ == "__main__":
     ax.set_zlabel("PC3")
     plt.show()
 
-
     ## Classification
 
     # Predicting site from connectivity features:
     #   normalization
-    #   dimensionality reduction 
+    #   dimensionality reduction
     #   classification
 
     # make_pipeline is a convenient way to create a Pipeline by passing the
@@ -213,12 +214,11 @@ if __name__ == "__main__":
     #     f"average test score: {results_with_pca['test_score'].mean():.2f}."
     # )
 
-
     ## Clustering
 
     # First, apply PCA to reduce the data dimensionality
     # you can play with the number of components
-    # but for this exercise, choose 
+    # but for this exercise, choose
     # the number of components such that 90% of the variance is explained
     # transformer = PCA(n_components=?)
     # X_pca = ?
@@ -232,12 +232,11 @@ if __name__ == "__main__":
     # print(f"Kmeans ARI score: {?}")
     # print(f"Kmeans Silhouette Score: {?}")
 
-    # find the best number of clusters using ARI and silhouette score by 
+    # find the best number of clusters using ARI and silhouette score by
     # plotting the scores for different number of clusters using plot_clustering_evaluation_scores function
     # Is the best number of clusters clear from the plots?
     #
     #
-
 
 
 # QUESTIONS
