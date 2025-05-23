@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import load_digits
 from sklearn.decomposition import PCA
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 
 ## Main exercise
