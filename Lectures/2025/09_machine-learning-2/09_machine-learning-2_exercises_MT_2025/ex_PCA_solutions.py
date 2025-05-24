@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import load_digits
 from sklearn.decomposition import PCA
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 
 ## Main exercise
@@ -49,7 +49,8 @@ plt.show()
 # Plot 3D PCA components with y labels
 plt.figure()
 from mpl_toolkits.mplot3d import Axes3D
-ax = plt.axes(projection='3d')
+
+ax = plt.axes(projection="3d")
 for i in range(n_digits):
     ax.scatter(X_pca[y == i, 0], X_pca[y == i, 1], X_pca[y == i, 2], label=i)
 plt.legend()
@@ -73,7 +74,7 @@ pipeline.fit(X_train, y_train)
 # What is the number of components chosen?
 # Find the attribute of the PCA that gives the number of components
 # and replace ? with it
-n_components = pipeline.named_steps['pca'].n_components_
+n_components = pipeline.named_steps["pca"].n_components_
 print(f"Number of components: {n_components}")
 
 # Make predictions on the test data
