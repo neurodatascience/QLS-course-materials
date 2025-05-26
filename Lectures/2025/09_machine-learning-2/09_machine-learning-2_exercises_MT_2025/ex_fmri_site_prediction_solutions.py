@@ -68,7 +68,6 @@ import warnings
 from logging import warning
 
 import numpy as np
-from data.utils import data_loader
 from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -78,8 +77,8 @@ from sklearn.model_selection import cross_validate
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-# sys.path.insert(0, "../../")
-
+sys.path.insert(0, "../../")
+from data.utils import data_loader
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
