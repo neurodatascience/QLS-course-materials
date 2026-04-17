@@ -13,3 +13,6 @@
 [submodule "Lectures/2024"]
 	path = Lectures/2024
 	url = git@github.com:neurodatascience/course-materials-2024.git
+[submodule "Lectures/2025"]
+	path = Lectures/2025
+	url = https://github.com/neurodatascience/course-materials-2025.git
