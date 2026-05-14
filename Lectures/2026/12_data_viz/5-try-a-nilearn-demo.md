@@ -22,7 +22,7 @@ Pick a demo that has code you don't fully understand, run it, then use AI to dig
 
 2. **Extend it:** Ask the AI a small "what if" question, for example:
    > "What would I change to plot a different brain atlas instead of the one used here?"
-   
+
    Then actually make that change in the notebook and run it.
 
 The goal is to leave this exercise knowing how to navigate an unfamiliar library with AI help — a skill you'll use constantly.
