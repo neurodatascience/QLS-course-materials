@@ -1,0 +1,36 @@
+QLS612 Neuro Data Sciece | Introduction to Data Visualization | Friday, May 5, 2023
+
+# Exercise 3: Remake your visualization with all the data
+(not just the summary statistics)
+
+## Goal
+In the last two exercises, you planned and created a figure using summary statistics from a table.
+In this exercise, you will re-design and encode your figure from exercise 1, with all the participant-level data.
+
+## Data
+- [`../../data/participants_nbsub-200.tsv`](../../data/participants_nbsub-200.tsv) contains the participant-level data from the ABIDE dataset
+- [`../../data/ABIDE_LEGEND_V1.02.pdf`](../../data/ABIDE_LEGEND_V1.02.pdf) contains a table with the meanings of the column names in the .tsv
+
+## Task
+1. Plan whether/how to change your figure
+2. Write a python script to create the figure
+
+## HINT 2
+These are some steps you could follow
+1. Save a .py file
+2. Import the pyplot sublibrary of matplotlib
+   - `import matplotlib.pyplot as plt`
+3. Import the pandas library
+   - `import pandas as pd`
+4. Use pandas to read the csv data into a DataFrame
+   - `df = pd.read_csv(<PATH>)`
+5. Print the dataframe and/or look at it in a spreadsheet program (e.g., Excel or LibreOffice Calc) in order to see which column(s) you need.
+    - `print(df)`
+6. Create a blank Figure with Axes
+   - `fig, ax = plt.subplots()`
+7. Save the figure
+   - `fig.savefig(<PATH>)`
+8. Run the code
+9.  Open the figure so you can see how it changes when you adjust the code
+10. Use explicit coding to draw a figure with the data in the DataFrame.
+    - `ax.`
