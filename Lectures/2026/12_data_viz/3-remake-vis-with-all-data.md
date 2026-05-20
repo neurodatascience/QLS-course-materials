@@ -22,7 +22,7 @@ In this exercise, you will re-design and encode your figure from exercise 1, wit
 
 This saves lookup time and lets you focus on the visualization decisions.
 
-**Choosing a plot type:** Switching from summary statistics to participant-level data opens up new options (violin plots, strip plots, box plots, etc.). Ask AI to argue for one:
+**Choosing a plot type:** Switching from summary statistics to participant-level data opens up new options (violin plots, strip plots, box plots, etc.). Ask AI to argue for one (This is an example question, your question could be different):
 > "I want to show the distribution of [variable] split by autism diagnosis vs. control. Compare violin plots, strip plots, and box plots for this purpose — which would you recommend and why?"
 
 Then critically evaluate the argument: do you agree? Does the AI consider your specific message and audience?
